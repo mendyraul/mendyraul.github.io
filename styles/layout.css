@@ -41,7 +41,7 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, 
 .col1{color:#333333; background-color:#222222; border-bottom:1px dotted #666666;}
 .col2{color:#D2D2D2; background-color:#222222;}
 .col3{color:#666666; background-color:#F3F3F3;}
-.col3 a{color:#02A2C4; background-color:#F3F3F3;}
+.col3 {color:#02A2C4; background-color:#F3F3F3;}
 .col4{color:#333333; background-color:#FFFFFF;}
 .col4 a{color:#60E1FD; background-color:#FFFFFF;}
 .col5{color:#FFFFFF; background-color:#000000;}
@@ -71,7 +71,6 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, 
 #header h1 a{color:#F3F3F3; background-color:#222222;}
 #header p.toggler{display:inline;}
 #header p.toggler a{display:block; width:180px; padding:5px 0; text-align:center; text-transform:uppercase; color:#666666; background-color:#333333;}
-
 /* ----------------------------------------------Homepage Intro------------------------------------- */
 
 #intro{padding:20px 0 10px 0;}
@@ -98,7 +97,7 @@ div.overview{padding:20px 0 0 0;}
 .overview li.last{margin-right:0;}
 .wrapper .overview h2, .overview p, .overview div{margin:0 0 15px 0; padding:0;}
 .overview p{line-height:1.6em;}
-.overview div.imgholder{display:block; width:284px; height: 200px; padding:0px; border:1px solid #000000; justify-content: center;}
+.overview div.imgholder{display:grid; width:284px; height: 200px; padding: 5px; border:0px solid #000000; justify-content:center; object-fit:cover;}
 .overview p.readmore{display:block; width:100%; margin:0; padding:0; font-weight:bold; line-height:normal;}
 
 /* ----------------------------------------------Content------------------------------------- */
