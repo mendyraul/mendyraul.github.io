@@ -1,0 +1,15 @@
+#tictactoe {
+    background-color: black;
+    margin-top:10px;
+    border-collapse:collapse;
+    width: fit-content;
+    height: fit-content;
+    font-size: 100px;
+}
+td {
+    border: 1px solid blue;
+    white-space: nowrap;
+}
+
+
+
