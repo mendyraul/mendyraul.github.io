@@ -1,0 +1,11 @@
+{
+	"folders": [
+		{
+			"name": "mendyraul.github.io",
+			"path": "."
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "mendyraul.github.io"
+	}
+}

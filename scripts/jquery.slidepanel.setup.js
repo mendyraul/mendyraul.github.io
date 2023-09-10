@@ -1,3 +1,7 @@
+const resizeOps = () => {
+    document.documentElement.style.setProperty("--vh", window.innerHeight * 0.01 + "px");
+};
+
 $(document).ready(function() {
 	
 	// Expand Panel
