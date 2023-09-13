@@ -10,17 +10,7 @@ td {
     border: 1px solid blue;
     white-space: nowrap;
 }
-.container {
-    position: relative;
-  }
-.text-block {
-    position:fixed;
-    border-bottom: 30%;
-    background-color: transparent;
-    color: white;
-    padding-left: 20px;
-    padding-right: 20px;
-  }
+
 
 
 
