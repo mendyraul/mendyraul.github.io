@@ -45,7 +45,7 @@ Licence URI: http://www.os-templates.com/template-terms
                     <ul>
                         <li class="active"><a href="index.php">Homepage</a></li>
                         <li><a href="/mendyraul.github.io/pages/projects.html">Projects </a></li>
-                        <li><a href="/mendyraul.github.io/pages/blog.html">Blog</a></li>
+                        <li><a href="/mendyraul.github.io/pages/blog.php">Blog</a></li>
                         <li><a href="/mendyraul.github.io/pages/about-me.html">About Me</a></li>
                         <li><a href="pages/style-demo.html">Style Demo</a></li>
                         <li class="last" ><a href="pages/full-width.html">Full Width</a></li>
@@ -76,7 +76,7 @@ Licence URI: http://www.os-templates.com/template-terms
             </div>
         </div>
         <!-- ####################################################################################################### -->
-        <div class="wrapper col3">
+        <!-- <div class="wrapper col3">
             <p>Section ilwdhBJFCQIWDHBC
                 QIWEJK
                 BCIQWEDBJCQWLKDSJBCLQK
@@ -87,7 +87,7 @@ Licence URI: http://www.os-templates.com/template-terms
                 BDCQJERWHD
 
                 BCLEQW</p>
-        </div>
+        </div> -->
         <!-- ####################################################################################################### -->
         <div class="wrapper col5">
             <div id="footer">

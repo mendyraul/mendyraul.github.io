@@ -33,8 +33,8 @@ br.clear{clear:both; margin-top:-15px;}
 
 a{outline:none; text-decoration:none;}
 
-.fl_left, .imgl{width:30%;float:left;}
-.fl_right, .imgr{width:30%;float:right;}
+.fl_left, .imgl{margin-left: 20px; float:left;}
+.fl_right, .imgr{margin-right: 20px; float:right;}
 
 img{display:block; margin:0; padding:0; border:0;}
 .imgl, .imgr{border:1px solid #1F262C; padding:5px;}
@@ -158,11 +158,11 @@ div.overview{padding:20px 0 0 0;}
 #footer{width:100%;padding:15px 0;}
 #footer ul{margin:0; padding:0; list-style:none;}
 #footer h2{margin:0 0 15px 0; padding:0 0 8px 0; border-bottom:1px dotted #CCCCCC;}
-#footer .box{display:block; float:right; width:auto; margin:0 0 0 25px; padding:0;}
+#footer .box{display:inline; text-align:center; width:auto;  padding:0;}
 #footer .box1{display:block; float:left; width:400px; line-height:1.6em;}
 #footer .box1 .imgl{border:1px solid #CCCCCC; padding:5px; color:#FFFFFF; background-color:#000000; height: 100px; width: 100px;}
-#footer .contactdetails li{position:relative; margin:0 0 8px 0;}
-#footer .contactdetails ul{position:relative; margin:0 0 8px 0;}
+#footer .contactdetails li{text-align:center; padding:1px; position:relative; }
+#footer .contactdetails ul{text-align:center; padding:1px; position:relative; }
 #footer .flickrbox, #footer .flickrbox .wrap{display:block; width:260px;}
 #footer .flickrbox .wrap .fix{clear:both;}
 #footer .flickrbox .wrap .flickr_badge_image{display:block; float:left; margin:0 10px 10px 0; width:80px; height:80px;}
