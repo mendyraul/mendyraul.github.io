@@ -71,7 +71,7 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, 
 
 /* ----------------------------------------------Header------------------------------------- */
 
-#header{padding:0 0 20px 0; font-family:Verdana, Arial, Helvetica, sans-serif;}
+#header{text-align:center; padding:0 0 20px 0; font-family:Verdana, Arial, Helvetica, sans-serif;}
 #header h1, #header p{margin:0; padding:0;}
 #header #logo{display:block; float:left; width:260px; margin-top:18px;}
 #header h1{margin:0 0 7px 0; font-size:56px; font-family:Georgia, "Times New Roman", Times, serif;}
@@ -97,11 +97,12 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, 
 
 /* ----------------------------------------------Portfolio Overview------------------------------------- */
 
-div.overview{padding:20px 0 0 0;}
+div.overview{padding:20px 0 0 0; text-align:center;}
 .overview h1#title{display:block; width:100%; margin-top:-20px; font-size:180px; letter-spacing:-2px; color:#DDDDDD; background-color:#FFFFFF;}
-.overview ul{margin:0; padding:0; list-style:none;}
-.overview li{display:block; float:left; width:296px; margin:0 36px 36px 0; padding:0;}
-.overview li.last{margin-right:0;}
+.overview ul{ align-items:center; list-style:none;}
+.overview li{display:inline-block; width:296px; margin:0 36px 36px 0; padding:0;}
+/* .overview li.last{margin-right:0;} */
+.overview img { object-fit: contain; max-width: 100%; height: auto; align-content: center; margin: auto;}
 .wrapper .overview h2, .overview p, .overview div{margin:0 0 15px 0; padding:0;}
 .overview p{line-height:1.6em;}
 .overview div.imgholder{display:grid; width:284px; height: 200px; padding: 5px; border:0px solid #000000; justify-content:center; object-fit:cover;}
