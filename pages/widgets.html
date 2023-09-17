@@ -1,149 +1,142 @@
 <!DOCTYPE html>
+<!--
+Template Name: OnlineFolio
+Author: <a href="http://www.os-templates.com/">OS Templates</a>
+Author URI: http://www.os-templates.com/
+Licence: Free to use under our free template licence terms
+Licence URI: http://www.os-templates.com/template-terms
+-->
 <html lang="en">
     <head>
+        <title>OnlineFolio</title>
         <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title> Tic-Tac-Toe </title>
-        <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="/assests/img/IMG_7914.JPG"/>
-        <!-- Google fonts-->
-        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
-        <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes" />
+        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+        <!-- Topicon-->
+        <link rel="icon" type="image/x-icon" href="/assests/img/IMG7_914.JPG"/>
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="/styles/styles.css" rel="stylesheet" />
-        <link href="/styles/styles2.css" rel="stylesheet" />
+        <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+        <!-- Bootstrap core JS-->
+        <script type="text/javascript" src="/scripts/jquery.min.js"></script>
+        <script type="text/javascript" src="/scripts/tictactoe.js"></script>
+        <!-- added js -->
+        <script type="text/javascript" src="scripts/nav.js"></script>
     </head>
-    <body id="page-top">
-        <!-- Navigation-->
-        <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
-            <div class="container">
-                <a class="navbar-brand" href="#page-top">Widgets!</a>
-                <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                    Menu
-                    <i class="fas fa-bars"></i>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#About">About</a></li>
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#Play">Play</a></li>
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#calculator">Calculator</a></li>
+    <body id="top">
+        <div class="wrapper col1">
+            
+            <div class="accordion">
+                
+                <div id="socialise">
+                <ul>
+                    <!-- <li><a href="#"><img src="styles/layout/images/linkedin.gif" alt="" /><span>Linked In</span></a></li>
+                    <li><a href="#"><img src="styles/layout/images/skype.gif" alt="" /><span>Skype</span></a></li>
+                    <li><a href="#"><img src="styles/layout/images/facebook.gif" alt="" /><span>Facebook</span></a></li>
+                    <li><a href="#"><img src="styles/layout/images/rss.gif" alt="" /><span>FeedBurner</span></a></li>
+                    <li class="last"><a href="#"><img src="styles/layout/images/twitter.gif" alt="" /><span>Twitter</span></a></li> -->
+                </ul>
+                <br class="clear" />
+                </div>
+            </div>
+        </div>
+        <!-- ################################# NAVIGATION SECTION ########################################### -->
+        <div class="wrapper col2">
+            <div id="header">
+                <p class="toggler"><a id="slideit" href="#socialise">Click Here to Socialize!</a><a id="closeit" style="display:none;" href="#socialise">Close Panel</a></p>
+                <button id="menu-toggle">Menu</button>
+                <br class="clear" />
+                <nav id="topnav" class="hidden">
+                    <ul>
+                        <li ><a href="/index.html">Homepage</a></li>
+                        <li><a href="/pages/projects.html">Projects </a></li>
+                        <li><a href="/pages/blog.php">Blog</a></li>
+                        <li class="active"><a href="/pages/widgets.html">Widgets</a></li>
+                        <li><a href="/pages/dogs.html">Dogs</a></li>
                     </ul>
-                </div>
+                </nav>
+                <br class="clear" />
             </div>
-        </nav>
-        <!-- Masthead-->
-        <header class="masthead bg-primary text-white text-center">
-            <div class="container d-flex align-items-center flex-column">
-                <!-- Masthead Avatar Image-->
-                <img class="masthead-avatar mb-5" src="/assests/img/Tic_tac_toe.svg.png" alt="Header Image" />
-                <!-- Masthead Heading-->
-                <h2 class="masthead-heading text-uppercase mb-0">Tic-Tac-Toe</h2>
-                <!-- Icon Divider-->
-                <div class="divider-custom divider-light">
-                    <div class="divider-custom-line"></div>
-                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-                    <div class="divider-custom-line"></div>
-                </div>
-                <!-- Masthead Subheading-->
-                <p class="masthead-subheading font-weight-light mb-0">Welcome to my widgets!</p>
-            </div>
-        </header>
-        <!-- About Section-->
-        <section class="page-section portfolio" id="About">
-            <div class="figure-img">
-                <img class="portfolio-item" src="/assests/img/Tic_tac_toe.svg.png" alt="Header Image" />
-            </div>
-        </section>
-        <!-- Play Section-->
-        <section class="masthead bg-primary text-white text-center" id="Play">
-            <!-- Section Heading-->
-            <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Tic-Tac-Toe</h2>
-            <!-- Icon Divider-->
-            <div class="divider-custom">
-                <div class="divider-custom-line"></div>
-                <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-                <div class="divider-custom-line"></div>
-            </div>
-            <!--  Section Content-->
-            <div class="row">
-                <div class="col-lg-4 ms-auto"><p class="lead">Tic-Tac-Toe dates back to the early Roman Empire, circa first century BC. </p></div>
-                <div class="col-lg-4 me-auto"><p class="lead">The games famous grid pattern has been found at historical sites all throughout Rome.</p></div>
-            </div>
+        </div>
+        <!-- ####################################################################################################### -->
+        <div class="wrapper col3">
             <div class="container">
-                <!-- Play Heading-->
-                <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Let's Play</h2>
-                <!-- Icon Divider-->
-                <div class="divider-custom">
-                    <div class="divider-custom-line"></div>
-                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-                    <div class="divider-custom-line"></div>
-                </div>
+                <!-- Explain Game annd tictactoe picture -->
+                <img src="/assests/img/Tic_tac_toe.svg.png" alt="Header Image" />
                 <!-- Game -->
                 <center>
                     <div id="tictactoe"></div>
                 </center>
             </div>
-        </section>
-        <div id="calculator" class="calculator">
-            <!-- About Section Content-->
-            <div class="row">
-                <div class="col-lg-4 ms-auto"><p class="lead">Calculator</p></div>
-                <div class="col-lg-4 me-auto"><p class="lead">Slowly adding more functions to practice JavaScript</p></div>
-            </div>
-            <input type="text" id="display" disabled>
-            <div class="buttons">
-                <div class="button-row">
-                    <button class="number" onclick="appendToDisplay('1')">1</button>
-                    <button class="number" onclick="appendToDisplay('2')">2</button>
-                    <button class="number" onclick="appendToDisplay('3')">3</button>
+        </div>
+        <!-- ####################################################################################################### -->
+        <div class="wrapper col4" id="">
+            <div class="overview">
+                <h2 id="title">Calculator</h>
+                    <input type="text" id="display" disabled>
+                    <div class="buttons">
+                        <div class="button-row">
+                            <button class="number" onclick="appendToDisplay('1')">1</button>
+                            <button class="number" onclick="appendToDisplay('2')">2</button>
+                            <button class="number" onclick="appendToDisplay('3')">3</button>
+                        </div>
+                        <div class="button-row">
+                            <button class="number" onclick="appendToDisplay('4')">4</button>
+                            <button class="number" onclick="appendToDisplay('5')">5</button>
+                            <button class="number" onclick="appendToDisplay('6')">6</button>
+                        </div>
+                        <div class="button-row">
+                            <button class="number" onclick="appendToDisplay('7')">7</button>
+                            <button class="number" onclick="appendToDisplay('8')">8</button>
+                            <button class="number" onclick="appendToDisplay('9')">9</button>
+                        </div>
+                        <div class="button-row">
+                            <button onclick="clearDisplay()">c</button>
+                            <button class="number" onclick="appendToDisplay('0')">0</button>
+                            <button onclick="calculateResult()">=</button>
+                        </div>
+                        <div class="button-row">
+                            <button onclick="appendToDisplay('+')">+</button>
+                            <button onclick="appendToDisplay('-')">-</button>
+                            <button onclick="appendToDisplay('*')">*</button>
+                        </div>
+                        <div class="button-row">
+                            <button onclick="appendToDisplay('/')">/</button>
+                            <button onclick="appendToDisplay('sqrt(')">√</button>
+                            <button onclick="appendToDisplay(')')">)</button>
+                        </div>
+                        <div class="button-row">
+                            <button onclick="appendToDisplay('sin(')">sin</button>
+                            <button onclick="appendToDisplay('cos(')">cos</button>
+                            <button onclick="appendToDisplay('tan(')">tan</button>
+                        </div>
+                    </div>
                 </div>
-                <div class="button-row">
-                    <button class="number" onclick="appendToDisplay('4')">4</button>
-                    <button class="number" onclick="appendToDisplay('5')">5</button>
-                    <button class="number" onclick="appendToDisplay('6')">6</button>
-                </div>
-                <div class="button-row">
-                    <button class="number" onclick="appendToDisplay('7')">7</button>
-                    <button class="number" onclick="appendToDisplay('8')">8</button>
-                    <button class="number" onclick="appendToDisplay('9')">9</button>
-                </div>
-                <div class="button-row">
-                    <button onclick="clearDisplay()">c</button>
-                    <button class="number" onclick="appendToDisplay('0')">0</button>
-                    <button onclick="calculateResult()">=</button>
-                </div>
-                <div class="button-row">
-                    <button onclick="appendToDisplay('+')">+</button>
-                    <button onclick="appendToDisplay('-')">-</button>
-                    <button onclick="appendToDisplay('*')">*</button>
-                </div>
-                <div class="button-row">
-                    <button onclick="appendToDisplay('/')">/</button>
-                    <button onclick="appendToDisplay('sqrt(')">√</button>
-                    <button onclick="appendToDisplay(')')">)</button>
-                </div>
-                <div class="button-row">
-                    <button onclick="appendToDisplay('sin(')">sin</button>
-                    <button onclick="appendToDisplay('cos(')">cos</button>
-                    <button onclick="appendToDisplay('tan(')">tan</button>
-                </div>
+                
+                <br class="clear" />
             </div>
         </div>
-    
-        <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-        <!-- Font Awesome icons (free version)-->
-        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-        <!-- Core theme JS-->
-        <script src="/scripts/scripts.js"></script>
-        <script src="/scripts/tictactoe.js"></script>
-        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+        <!-- ####################################################################################################### -->
+        <div class="wrapper col5">
+            <div id="footer">
+                <div class="box contactdetails">
+                    <h2>My Contact Details </h2>
+                    <ul>
+                        <li>Fort Lauderdale, FL</li>
+                        <li>Tel: (954)-294-4244</li>
+                        <li><a href="mailto:rmendy2019@fau.edu"> Email:</a> rmendy2019@fau.edu</li>
+                        <li class="last"><a href="assests/Raul Mendy Resume.pdf">Resume</a></li>
+                    </ul>
+                    </div>
+                </div>
+                <br class="clear" />
+            </div>
+        </div>
+        <!-- ####################################################################################################### -->
+        <div class="wrapper col6">
+        <div id="copyright">
+            <p class="fl_left">Copyright &copy; 2014 - All Rights Reserved </p>
+            <p class="fl_right">Template by <a target="_blank" href="http://www.os-templates.com/" title="Free Website Templates">OS Templates</a></p>
+            <br class="clear" />
+        </div>
     </body>
-    <footer class="footer text-center">
-    </footer>
 </html>
-
-

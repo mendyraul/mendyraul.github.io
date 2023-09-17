@@ -18,7 +18,8 @@ Licence URI: http://www.os-templates.com/template-terms
         <link rel="stylesheet" href="/styles/layout.css" type="text/css"/>
         <!-- Bootstrap core JS-->
         <script type="text/javascript" src="/scripts/jquery.min.js"></script>
-        <script type="text/javascript" src="/scripts/jquery.slidepanel.setup.js"></script>
+        <!-- added js -->
+        <script type="text/javascript" src="scripts/nav.js"></script>
     </head>
     <body id="top">
         <div class="wrapper col1">
@@ -39,52 +40,50 @@ Licence URI: http://www.os-templates.com/template-terms
         <div class="wrapper col2">
             <div id="header">
                 <p class="toggler"><a id="slideit" href="#socialise">Click Here to Socialize!</a><a id="closeit" style="display:none;" href="#socialise">Close Panel</a></p>
-                <!-- <div id="logo">
-                    <h2>Raul Mendy</h2>
-                </div> -->
-                <div id="topnav">
-                <ul>
-                    <li><a href="/index.html">Homepage</a></li>
-                    <li><a href="/pages/projects.html">Projects </a></li>
-                    <li><a href="/pages/blog.php">Blog</a></li>
-                    <li ><a href="/pages/about-me.html">About Me</a></li>
-                    <li class="active"><a href="/pages/widgets.html">Widgets</a></li>
-                    <li class="last"><a href="pages/full-width.html">Full Width</a></li>
-                </ul>
-                </div>
+                <button id="menu-toggle">Menu</button>
+                <br class="clear" />
+                <nav id="topnav" class="hidden">
+                    <ul>
+                        <li><a href="/index.html">Homepage</a></li>
+                        <li class="active"><a href="/pages/projects.html">Projects </a></li>
+                        <li><a href="/pages/blog.php">Blog</a></li>
+                        <li><a href="/pages/widgets.html">Widgets</a></li>
+                        <li><a href="/pages/dogs.html">Dogs</a></li>
+                    </ul>
+                </nav>
                 <br class="clear" />
             </div>
         </div>
         <!-- #####################################   PROJECTS.HTML ONLY ############################################## -->
         <div class="wrapper col3">
                         <div id="intro">
-                            <div class="box1">
-                            <h2>Welcome To My Online Portfolio !</h2>
-                            <p>I am excited to share with you my webpage, </p>
-                            <p>built to showcase my skills and hopefully much more! </p>
-                            <p></p>
+                            <div class="box">
+                                <h2>Welcome To My Online Portfolio !</h2>
+                                <p>I am excited to share with you my webpage, </p>
+                                <p>built to showcase my skills and hopefully much more! </p>
+                                <p></p>
                             </div>
                             <div class="box">
-                            <h2>Libraries/Frameworks:</h2>
-                            <ul> 
-                                <li>Frameworks:</li>
-                                <li>&raquo; Gradle, Docker, Jest </li> 
-                                <li>&raquo; SwiftUI, Firebase, Flask</li>
-                                <li>Libraries: </li>
-                                <li>&raquo; Cryptopp, ReactJS, Jenkins, DynamodDB</li>
-                                <li class="last">&raquo; Pandas, NumPy, PyTorch, OpenCV, OpenGI</li>
-                            </ul>
+                                <h2>Libraries/Frameworks:</h2>
+                                <ul> 
+                                    <li>Frameworks:</li>
+                                    <li>&raquo; Gradle, Docker, Jest </li> 
+                                    <li>&raquo; SwiftUI, Firebase, Flask</li>
+                                    <li>Libraries: </li>
+                                    <li>&raquo; Cryptopp, ReactJS, Jenkins, DynamodDB</li>
+                                    <li class="last">&raquo; Pandas, NumPy, PyTorch, OpenCV, OpenGI</li>
+                                </ul>
                             </div>
                             <div class="box">
-                            <h2>Languages</h2>
-                            <ul>
-                                <li>&raquo; Python</li>
-                                <li>&raquo; C/C++</li>
-                                <li>&raquo; HTML/CSS/JavaScript</li>
-                                <li>&raquo; SQL</li>
-                                <li>&raquo; Java</li>
-                                <li class="last">&raquo; Git, Linux/Unix, Maven, Jenkins, Azure, Jira, MS Project, SPSS </li></li>
-                            </ul>
+                                <h2>Languages</h2>
+                                <ul>
+                                    <li>&raquo; Python</li>
+                                    <li>&raquo; C/C++</li>
+                                    <li>&raquo; HTML/CSS/JavaScript</li>
+                                    <li>&raquo; SQL</li>
+                                    <li>&raquo; Java</li>
+                                    <li class="last">&raquo; Git, Linux/Unix, Maven, Jenkins, Azure, Jira, MS Project, SPSS </li></li>
+                                </ul>
                             </div>
                             <br class="clear" />
                         </div>
@@ -127,16 +126,13 @@ Licence URI: http://www.os-templates.com/template-terms
         <!-- ####################################################################################################### -->
         <div class="wrapper col5">
             <div id="footer">
-                <div class="box1">
-
-                </div>
                 <div class="box contactdetails">
                 <h2>My Contact Details </h2>
                 <ul>
                     <li>Fort Lauderdale, FL</li>
                     <li>Tel: (954)-294-4244</li>
                     <li><a href="mailto:rmendy2019@fau.edu"> Email:</a> rmendy2019@fau.edu</li>
-                    <li class="last"><a href="/mendyraul.github.io//assets/Raul Mendy's Resume.pdf">Resume</a></li>
+                    <li class="last"><a href="/assests/Raul Mendy's Resume.pdf">Resume</a></li>
                 </ul>
                 </div>
                 </div>
@@ -146,7 +142,7 @@ Licence URI: http://www.os-templates.com/template-terms
         <!-- ####################################################################################################### -->
         <div class="wrapper col6">
         <div id="copyright">
-            <p class="fl_left">Copyright &copy; 2014 - All Rights Reserved - <a href="#">Domain Name</a></p>
+            <p class="fl_left">Copyright &copy; 2014 - All Rights Reserved </p>
             <p class="fl_right">Template by <a target="_blank" href="http://www.os-templates.com/" title="Free Website Templates">OS Templates</a></p>
             <br class="clear" />
         </div>

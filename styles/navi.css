@@ -10,16 +10,51 @@ File: Navigation CSS
 
 
 #topnav{display: inline; overflow: hidden; width: 100%; white-space: nowrap; float:none; font-size:16px; font-family:Georgia, "Times New Roman", Times, serif;}
-#topnav ul{display:inline; list-style:none;}
-#topnav li{display:inline; float:none; margin:10px 30px 10px 0; padding:0;}
-/* #topnav li.last{margin-right:0;} */
+#topnav ul{display:inline; list-style:none; margin: 0 0;}
+#topnav li{display:inline; float:none; margin:10px 30px 10px 0; padding: 0;}
+/* #topnav li.last{border-spacing:20;} */
+/* #topnav li.first{margin-left:20;} */
 #topnav li span{margin-top:5px; float:none; font-size:12px; font-family:Arial, Helvetica, sans-serif; text-transform:lowercase; color:#999999; background-color:#222222;}
 #topnav li a:link, #topnav li a:visited, #topnav li a:hover{color:#666666; background-color:#222222; text-transform:uppercase;}
 #topnav li a:hover, #topnav ul li.active a{color:#60E1FD; background-color:#222222;}
 
+
+#menu-toggle{float:right; display: none}
+@media (max-width: 720px) {
+    /* Hide the navigation menu and show the button */
+    #topnav.hidden {
+        display: none;
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+    }
+
+    #menu-toggle {
+        display: block; /* Display the button on small screens */
+        margin-right: 5%;
+        margin-bottom:0;
+        padding: 10px;
+        width: 80px;
+        background-color: #60E1FD;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serife;
+    }
+    /* Adjust the style of the small menu as needed */
+    #topnav ul {
+        display: block;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    #topnav li {
+        display: block;
+        margin: 0;
+        padding: 10px 0;
+    }
+}
+
 /* ----------------------------------------------Column Navigation------------------------------------- */
 
-/* #column .subnav{overflow-x: scroll; white-space: nowrap; display:block; width:250px; padding:25px; background-color:#F9F9F9; margin-bottom:30px;}
+#column .subnav{overflow-x: scroll; white-space: nowrap; display:block; width:250px; padding:25px; background-color:#F9F9F9; margin-bottom:30px;}
 #column .subnav h2{margin:0 0 20px 0; padding:0 0 14px 0; font-size:20px; font-weight:normal; font-family:Georgia, "Times New Roman", Times, serif; color:#666666; background-color:#F9F9F9; line-height:normal; border-bottom:1px dotted #666666;}
 #column .subnav ul{margin:0; padding:0; list-style:none;}
 #column .subnav li{margin:0 0 3px 0; padding:0;}
@@ -30,4 +65,9 @@ File: Navigation CSS
 #column .subnav ul ul a{padding-left:40px; background-position:30px center;}
 #column .subnav ul ul ul a{padding-left:50px; background-position:40px center;}
 #column .subnav ul ul ul ul a{padding-left:60px; background-position:50px center;}
-#column .subnav ul ul ul ul ul a{padding-left:70px; background-position:60px center;} */
+#column .subnav ul ul ul ul ul a{padding-left:70px; background-position:60px center;}
+
+
+
+
+
