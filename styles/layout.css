@@ -98,8 +98,8 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, 
 
 /* ----------------------------------------------Portfolio Overview------------------------------------- */
 
-div.overview{padding:20px 0 0 0; text-align:center;}
-.overview h1#title{display:block; width:100%; margin-top:-20px; font-size:180px; letter-spacing:-2px; color:#DDDDDD; background-color:#FFFFFF;}
+div.overview{padding:20px 0 0 0; text-align:center; align-content: center; align-items: center; align-self: center;}
+.overview h1#title{display:block; width:30%; margin-top:-20px; font-size:80px; letter-spacing:-2px; color:#2b14d8; background-color:#757175;text-align: center;}
 .overview ul{ align-items:center; list-style:none;}
 .overview li{display:inline-block; width:296px; margin:0 36px 36px 0; padding:0;}
 /* .overview li.last{margin-right:0;} */
@@ -113,7 +113,9 @@ div.overview{padding:20px 0 0 0; text-align:center;}
 
 #container{padding:30px 0; line-height:1.4em;}
 #container h1, #container h2, #container h3, #container h4, #container h5, #container h6{margin-bottom:15px; padding-bottom:8px; border-bottom:1px dotted #CCCCCC;}
+#container img {object-fit: contain; width: 40%; height: auto; align-content: center; margin: auto;}
 #content{display:block; float:left; width:600px;}
+
 
 /* Comments */
 
@@ -199,4 +201,61 @@ div.index{ padding:20px 0 0 0; text-align:center;}
 td {
     border: 1px solid blue;
     white-space: nowrap;
+}
+.calculator {
+    display: grid;
+    text-align: center;
+    grid-template-columns: repeat(1, 1fr);
+    width: 300px;
+    padding: 20px;
+    background-color: #a52081;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+#display {
+    width: 90%;
+    height: 40px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    margin-right: 10px;
+    margin-left: 10px;
+    font-size: 18px;
+}
+
+.buttons {
+    display: grid;
+    padding: 5px;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 10px;
+}
+
+button {
+    width: 100%;
+    height: 40px;
+    font-size: 18px;
+    background-color: #0074cc;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 5px;
+    margin-bottom: 2px;
+    margin-right: 7px;
+    margin-left:7px;
+}
+
+button:hover {
+    background-color: #0058a3;
+}
+.button-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 10px;
+}
+.zero_button {
+    margin: 0 auto;
+    grid-column: span 3;
 }

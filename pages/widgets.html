@@ -55,7 +55,7 @@ Licence URI: http://www.os-templates.com/template-terms
         </div>
         <!-- ####################################################################################################### -->
         <div class="wrapper col3">
-            <div class="container">
+            <div id="container">
                 <!-- Explain Game annd tictactoe picture -->
                 <img src="/assests/img/Tic_tac_toe.svg.png" alt="Header Image" />
                 <!-- Game -->
@@ -67,45 +67,50 @@ Licence URI: http://www.os-templates.com/template-terms
         <!-- ####################################################################################################### -->
         <div class="wrapper col4" id="">
             <div class="overview">
-                <h2 id="title">Calculator</h>
-                    <input type="text" id="display" disabled>
-                    <div class="buttons">
-                        <div class="button-row">
-                            <button class="number" onclick="appendToDisplay('1')">1</button>
-                            <button class="number" onclick="appendToDisplay('2')">2</button>
-                            <button class="number" onclick="appendToDisplay('3')">3</button>
-                        </div>
-                        <div class="button-row">
-                            <button class="number" onclick="appendToDisplay('4')">4</button>
-                            <button class="number" onclick="appendToDisplay('5')">5</button>
-                            <button class="number" onclick="appendToDisplay('6')">6</button>
-                        </div>
-                        <div class="button-row">
-                            <button class="number" onclick="appendToDisplay('7')">7</button>
-                            <button class="number" onclick="appendToDisplay('8')">8</button>
-                            <button class="number" onclick="appendToDisplay('9')">9</button>
-                        </div>
-                        <div class="button-row">
-                            <button onclick="clearDisplay()">c</button>
-                            <button class="number" onclick="appendToDisplay('0')">0</button>
-                            <button onclick="calculateResult()">=</button>
-                        </div>
-                        <div class="button-row">
-                            <button onclick="appendToDisplay('+')">+</button>
-                            <button onclick="appendToDisplay('-')">-</button>
-                            <button onclick="appendToDisplay('*')">*</button>
-                        </div>
-                        <div class="button-row">
-                            <button onclick="appendToDisplay('/')">/</button>
-                            <button onclick="appendToDisplay('sqrt(')">√</button>
-                            <button onclick="appendToDisplay(')')">)</button>
-                        </div>
-                        <div class="button-row">
-                            <button onclick="appendToDisplay('sin(')">sin</button>
-                            <button onclick="appendToDisplay('cos(')">cos</button>
-                            <button onclick="appendToDisplay('tan(')">tan</button>
+            
+                <center><h1 id="title">Calculator</h1></center>
+                    <center>
+                    <div class="calculator">
+                        <input type="text" id="display" disabled>
+                        <div class="buttons">
+                            <div class="button-row">
+                                <button class="number" onclick="appendToDisplay('1')">1</button>
+                                <button class="number" onclick="appendToDisplay('2')">2</button>
+                                <button class="number" onclick="appendToDisplay('3')">3</button>
+                            </div>
+                            <div class="button-row">
+                                <button class="number" onclick="appendToDisplay('4')">4</button>
+                                <button class="number" onclick="appendToDisplay('5')">5</button>
+                                <button class="number" onclick="appendToDisplay('6')">6</button>
+                            </div>
+                            <div class="button-row">
+                                <button class="number" onclick="appendToDisplay('7')">7</button>
+                                <button class="number" onclick="appendToDisplay('8')">8</button>
+                                <button class="number" onclick="appendToDisplay('9')">9</button>
+                            </div>
+                            <div class="button-row">
+                                <button onclick="clearDisplay()">c</button>
+                                <button class="number" onclick="appendToDisplay('0')">0</button>
+                                <button onclick="calculateResult()">=</button>
+                            </div>
+                            <div class="button-row">
+                                <button onclick="appendToDisplay('+')">+</button>
+                                <button onclick="appendToDisplay('-')">-</button>
+                                <button onclick="appendToDisplay('*')">*</button>
+                            </div>
+                            <div class="button-row">
+                                <button onclick="appendToDisplay('/')">/</button>
+                                <button onclick="appendToDisplay('sqrt(')">√</button>
+                                <button onclick="appendToDisplay(')')">)</button>
+                            </div>
+                            <div class="button-row">
+                                <button onclick="appendToDisplay('sin(')">sin</button>
+                                <button onclick="appendToDisplay('cos(')">cos</button>
+                                <button onclick="appendToDisplay('tan(')">tan</button>
+                            </div>
                         </div>
                     </div>
+                    </center>
                 </div>
                 
                 <br class="clear" />
