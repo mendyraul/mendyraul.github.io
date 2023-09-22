@@ -1,10 +1,4 @@
-/*
- * A complete tic-tac-toe widget, using JQuery.  Just include this 
- * script in a browser page and play.  A tic-tac-toe game will be 
- * included as a child element of the element with id "tictactoe".  
- * If the page has no such element, it will just be added at the end 
- * of the body.
- */
+
 $(function () {
 
     var squares = [], 
@@ -15,14 +9,6 @@ $(function () {
         turn = "X",
         
     /*
-     * To determine a win condition, each square is "tagged" from left
-     * to right, top to bottom, with successive powers of 2.  Each cell
-     * thus represents an individual bit in a 9-bit string, and a
-     * player's squares at any given time can be represented as a
-     * unique 9-bit value. A winner can thus be easily determined by
-     * checking whether the player's current 9 bits have covered any
-     * of the eight "three-in-a-row" combinations.
-     *
      *     273                 84
      *        \               /
      *          1 |   2 |   4  = 7
@@ -59,11 +45,7 @@ $(function () {
         return false;
     },
 
-    /*
-     * Sets the clicked-on square to the current player's mark,
-     * then checks for a win or cats game.  Also changes the
-     * current player.
-     */
+
     set = function () {
         
         if ($(this).html() !== EMPTY) {
@@ -85,11 +67,7 @@ $(function () {
         }
     },
 
-    /*
-     * Creates and attaches the DOM elements for the board as an
-     * HTML table, assigns the indicators for each cell, and starts
-     * a new game.
-     */
+
     play = function () {
         var board = $("<table border=3 cellspacing=0>"), indicator = 1;
         for (var i = 0; i < SIZE; i += 1) {
