@@ -180,16 +180,16 @@ div.overview{padding:20px 0 0 0; text-align:center; align-content: center; align
 #copyright p{position:relative; margin:0; padding:0;}
 
 /* nnew for index */
-div.index{ padding:20px 0 0 0; text-align:center;}
+div.index{ padding:20px 0 0 0; text-align:center; align-content: center}
 .index h1#title{display:block; width:100%; margin-top:-20px; font-size:180px; letter-spacing:-2px; color:#DDDDDD; background-color:#FFFFFF;}
-.index ul{ display:inline-block; list-style:none; align-items: center}
-.index li{  flex-direction: column; width:296px; margin:0 0 0 0; padding:10px;}
+.index ul{ display:inline-flex;flex-direction: column;list-style:none; align-items: center}
+.index li{ width:296px; margin:0 0 0 0; padding:10px;}
 .index img { object-fit: contain; max-width: 100%; height: auto; align-content: center; margin: auto;}
 .wrapper .index h2, .index p, .index div{margin:0 0 15px 0; padding:0;}
 .index p{line-height:1.6em;}
-.index div.imgholder{display:grid; width:284px; height: 200px; padding: 5px; border:0px solid #000000; justify-content:center; object-fit:cover;}
-.index p.readmore{display:block; width:100%; margin:0; padding:0; font-weight:bold; line-height:normal;}
-.index div.contain { align-content: center;}
+.index div.imgholder{ display:grid; width:296px; height: 200px; padding: 5px; border:0px solid #000000; justify-content:center; object-fit:cover;}
+.index p.readmore{display:block; width:100%; margin: -10px; padding:0; font-weight:bold; line-height:normal;}
+.index div.contain { align-items: center;}
 
 /* For widjets */
 #tictactoe {
