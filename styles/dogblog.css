@@ -23,9 +23,8 @@ body {
   perspective: 1000px;
   -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
-  /* Additional styles for your transformed section */
-  margin-top: 60px; /* Adjust this margin to make it go under the navigation */
-  height: 100%; /* Set a height for your transformed section */
+  margin-top: 60px; /* Adjust to make it go under the navigation */
+  height: 80%; 
   width:100%
 }
 
