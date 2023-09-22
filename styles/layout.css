@@ -45,7 +45,7 @@ img{display:block; margin:0; padding:0; border:0;}
 
 div.wrapper{position:relative; float:left; width:100%; margin:0; text-align:left;}
 div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, div.wrapper h6{margin:0; padding:0; line-height:normal; font-weight:normal; font-size:18px; font-family:Georgia, "Times New Roman", Times, serif;}
-.col1{color:#333333; background-color:#222222; } /* border-bottom:1px dotted #666666; */
+.col1{color:#333333; background-color:#222222; border-bottom:1px dotted #666666;} /* border-bottom:1px dotted #666666; */
 .col2{color:#D2D2D2; background-color:#222222;}
 .col3{color:#666666; background-color:#F3F3F3;}
 .col3 {color:#02A2C4; background-color:#F3F3F3;}
@@ -61,13 +61,15 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, 
 
 /* ----------------------------------------------Social Bar------------------------------------- */
 
-#socialise{display:none; padding:20px 0;}
-#socialise ul{display:inline; margin:0; padding:0; list-style:none; font-size:20px; font-family:Georgia, "Times New Roman", Times, serif;}
-#socialise li{display:block; float:left; margin:0 103px 0 0; text-align:center;}
+#socialise{display:none; padding:20px 0; justify-content: center; text-align: center;}
+#socialise ul{display:inline-flex; margin-left: 20%; padding:0; list-style:none; font-size:20px; font-family:Georgia, "Times New Roman", Times, serif;}
+#socialise li{display:inline-block; margin:0 103px 0 0; text-align:center;}
 #socialise li span{display:block; margin:8px 0 0 0;}
 #socialise li.last{margin-right:0;}
 #socialise a{color:#333333; background-color:#222222;}
 #socialise a:hover{color:#CCCCCC; background-color:#222222;}
+#socialise img{object-fit: contain; height: 100px; width: 70px; align-content: center;margin: auto;}
+#socialise div.imgholder{text-align: center; display:grid; width:auto; height: auto; padding: 5px; border:0px solid #000000; justify-content:center; object-fit:cover;}
 
 /* ----------------------------------------------Header------------------------------------- */
 
