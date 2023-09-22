@@ -62,7 +62,7 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, 
 /* ----------------------------------------------Social Bar------------------------------------- */
 
 #socialise{display:none; padding:20px 0; justify-content: center; text-align: center;}
-#socialise ul{display:inline-flex; margin-left: 20%; padding:0; list-style:none; font-size:20px; font-family:Georgia, "Times New Roman", Times, serif;}
+#socialise ul{display:inline; margin-left: 20%; padding:0; list-style:none; font-size:20px; font-family:Georgia, "Times New Roman", Times, serif;}
 #socialise li{display:inline-block; margin:0 103px 0 0; text-align:center;}
 #socialise li span{display:block; margin:8px 0 0 0;}
 #socialise li.last{margin-right:0;}
