@@ -53,7 +53,7 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, 
 .col4 a{color:#60E1FD; background-color:#FFFFFF;}
 .col5{color:#FFFFFF; background-color:#000000;}
 .col5 a{color:#60E1FD; background-color:#000000;}
-.col6, .col6 a{color:#FFFFFF; background-color:#333333;}
+.col6, .col6 a{color:#FFFFFF; background-color:#333333; font-size:12px;}
 
 /* ----------------------------------------------Generalise------------------------------------- */
 
@@ -180,8 +180,8 @@ div.overview{padding:20px 0 0 0; text-align:center; align-content: center; align
 /* nnew for index */
 div.index{ padding:20px 0 0 0; text-align:center;}
 .index h1#title{display:block; width:100%; margin-top:-20px; font-size:180px; letter-spacing:-2px; color:#DDDDDD; background-color:#FFFFFF;}
-.index ul{ display:flex; justify-content: center;  list-style:none;}
-.index li{ display:flex; flex-direction: column; align-items: center; width:296px; margin:0 0 0 0; padding:10px;}
+.index ul{ display:inline-block; list-style:none; align-items: center}
+.index li{  flex-direction: column; width:296px; margin:0 0 0 0; padding:10px;}
 .index img { object-fit: contain; max-width: 100%; height: auto; align-content: center; margin: auto;}
 .wrapper .index h2, .index p, .index div{margin:0 0 15px 0; padding:0;}
 .index p{line-height:1.6em;}
