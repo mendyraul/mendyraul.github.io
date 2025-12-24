@@ -1,0 +1,71 @@
+.snake-widget {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 18px 0 8px;
+}
+
+.snake-title {
+  margin: 0;
+}
+
+.snake-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.snake-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 16px;
+}
+
+#snakeStart,
+#snakeAuto,
+#snakeStop,
+#snakeRestart {
+  padding: 6px 12px;
+  border: 1px solid #666;
+  background: #222;
+  color: #f0f0f0;
+  cursor: pointer;
+}
+
+#snakeStart:hover,
+#snakeAuto:hover,
+#snakeStop:hover,
+#snakeRestart:hover {
+  background: #333;
+}
+
+.snake-status {
+  margin: 0;
+  font-size: 14px;
+  color: #e0e0e0;
+}
+
+.snake-help {
+  margin: 0;
+  font-size: 14px;
+  color: #ccc;
+}
+
+.snake-canvas {
+  width: 360px;
+  height: 360px;
+  background: #0f1a12;
+  border: 2px solid #3a3a3a;
+  border-radius: 12px;
+  touch-action: none;
+}
+
+@media (max-width: 480px) {
+  .snake-canvas {
+    width: 300px;
+    height: 300px;
+  }
+}

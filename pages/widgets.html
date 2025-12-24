@@ -16,39 +16,43 @@ Licence URI: http://www.os-templates.com/template-terms
         <link rel="icon" type="image/x-icon" href="/assests/img/IMG7_914.JPG"/>
         <!-- Core theme CSS (includes Bootstrap)-->
         <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+        <link rel="stylesheet" href="/styles/beat-the-deck.css" type="text/css" />
+        <link rel="stylesheet" href="/styles/modal.css" type="text/css" />
+        <link rel="stylesheet" href="/styles/snake.css" type="text/css" />
     </head>
     <body id="top">
-        <div class="wrapper col1">
-            <div class="accordion">
-                <div id="socialise">
-                    <div class="imgholder">
-                        <ul>
-                            <li><a href="https://github.com/mendyraul"><img src="/styles/layout/images/github.jpg" alt="" /><span> Github </span></a></li>
-                            
-                            <li><a href="https://www.faulacrosse.com"><img src="/styles/layout/images/FAULAX.png" alt="" /><span> FAU Lacrosse</span></a></li>
-                            <!-- <li><a href="#"><img src="styles/layout/images/linkedin.gif" alt="" /><span>Linked In</span></a></li> -->
-                        </ul>
-                    </div>
+        <div data-include="/partials/header.html"></div>
+        <!-- ####################################################################################################### -->
+         <!-- add beat the deck widget -->
+        <div class="wrapper col3">
+            <div class="beat-widget">
+                <h2 class="beat-title">Beat the Deck</h2>
+                <p class="beat-rules">Guess higher or lower on any pile. If you miss, that pile flips down and can’t be played. Run through the full deck without losing all piles.</p>
+                <div class="beat-meta">
+                    <span id="beatRemaining">Deck: 52</span>
+                    <button id="beatRestart" type="button">Restart</button>
                 </div>
+                <p class="beat-status" id="beatStatus">Hover a pile and choose higher or lower.</p>
+                <div class="beat-grid" id="beatGrid"></div>
             </div>
         </div>
-        <!-- ################################# NAVIGATION SECTION ########################################### -->
-        <div class="wrapper col2">
-            <div id="header">
-                <p class="toggler"><a id="slideit" href="#socialise">Click Here to Socialize!</a><a id="closeit" style="display:none;" href="#socialise">Close Panel</a></p>
-                <button id="menu-toggle">Menu</button>
-                <br class="clear" />
-                <nav id="topnav" class="hidden">
-                    <ul>
-                        <li ><a href="/index.html">Homepage</a></li>
-                        <li><a href="/pages/projects.html">Projects </a></li>
-                        <!-- <li><a href="/pages/blog.php">Blog</a></li> -->
-                        <li class="active"><a href="/pages/widgets.html">Widgets</a></li>
-                        <li><a href="/pages/dogblog.html">Dogs</a></li>
-                        <li><a href="/pages/encryption.html">Encryption</a></li>
-                    </ul>
-                </nav>
-                <br class="clear" />
+        <!-- ####################################################################################################### -->
+         <!-- add snake widget -->
+        <div class="wrapper col3">
+            <div class="snake-widget">
+                <h2 class="snake-title">Snake</h2>
+                <div class="snake-panel">
+                    <div class="snake-meta">
+                        <span>Score: <strong id="snakeScore">0</strong></span>
+                        <button id="snakeStart" type="button">Start</button>
+                        <button id="snakeAuto" type="button">Auto</button>
+                        <button id="snakeStop" type="button">Stop</button>
+                        <button id="snakeRestart" type="button">Restart</button>
+                    </div>
+                    <p class="snake-status" id="snakeStatus">Press Start to play.</p>
+                    <p class="snake-help">Use arrow keys or swipe on the board.</p>
+                    <canvas class="snake-canvas" id="snakeCanvas"></canvas>
+                </div>
             </div>
         </div>
         <!-- ####################################################################################################### -->
@@ -56,7 +60,10 @@ Licence URI: http://www.os-templates.com/template-terms
             <div id="container">
 
                 <!-- Explain Game annd tictactoe picture -->
-                <img src="/assests/img/Tic_tac_toe.svg.png" alt="Header Image" />
+                <center>
+                    <h2>Tic Tac Toe</h2>
+                    <img src="/assests/img/Tic_tac_toe.svg.png" alt="Tic Tac Toe" style="width: 50%; max-width: 320px;" />
+                </center>
                 <!-- Game -->
                 <center>
                     <div id="tictactoe"></div>
@@ -66,8 +73,8 @@ Licence URI: http://www.os-templates.com/template-terms
         <!-- ####################################################################################################### -->
         <div class="wrapper col4" id="">
             <div class="overview">
-            
-                <center><h1 id="title">Calculator</h1></center>
+                <!-- TO-DO -> Make fix border on title -->
+                <center><h2 id="title">Calculator</h2></center>
                     <center>
                     <div class="calculator">
                         <input type="text" id="display" disabled>
@@ -116,31 +123,22 @@ Licence URI: http://www.os-templates.com/template-terms
             </div>
         </div>
         <!-- ####################################################################################################### -->
-        <div class="wrapper col5">
-            <div id="footer">
-                <div class="box contactdetails">
-                    <h2>My Contact Details </h2>
-                    <ul>
-                        <li>Fort Lauderdale, FL</li>
-                        <li>Tel: (954)-294-4244</li>
-                        <li><a href="mailto:raul.mendy@outlook.com"> Email:</a> raul.mendy@outlook.com</li>
-                        <li class="last"><a href="/assests/RaulMendyResume.pdf">Resume</a></li>
-                    </ul>
-                    </div>
+        <div data-include="/partials/footer.html"></div>
+        <div class="modal-backdrop" id="modalBackdrop">
+            <div class="modal-card">
+                <h3 class="modal-title" id="modalTitle">Game Result</h3>
+                <p class="modal-message" id="modalMessage"></p>
+                <div class="modal-actions">
+                    <button id="modalClose" type="button">Close</button>
                 </div>
-                <br class="clear" />
             </div>
         </div>
-        <!-- ####################################################################################################### -->
-        <div class="wrapper col6">
-        <div id="copyright">
-            <p class="fl_left">Copyright &copy; 2014 - All Rights Reserved </p>
-            <p class="fl_right">Template by <a target="_blank" href="http://www.os-templates.com/" title="Free Website Templates">OS Templates</a></p>
-            <br class="clear" />
-        </div>
+        <script type="text/javascript" src="/scripts/include.js"></script>
         <script type="text/javascript" src="/scripts/jquery.min.js"></script>
         <script type="text/javascript" src="/scripts/tictactoe.js"></script>
-        <script type="text/javascript" src="/scripts/nav.js"></script>
         <script type="text/javascript" src="/scripts/calculator.js"></script>
+        <script type="text/javascript" src="/scripts/modal.js"></script>
+        <script type="text/javascript" src="/scripts/beat-the-deck.js"></script>
+        <script type="text/javascript" src="/scripts/snake.js"></script>
     </body>
 </html>

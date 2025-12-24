@@ -20,7 +20,6 @@ Licence URI: http://www.os-templates.com/template-terms
         <script type="text/javascript" src="/scripts/jquery.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
         <!-- added js -->
-        <script type="text/javascript" src="/scripts/nav.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/big-integer/1.6.51/BigInteger.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/forge/1.3.1/forge.min.js"></script>
@@ -99,39 +98,7 @@ Licence URI: http://www.os-templates.com/template-terms
     </style>
     
     <body id="top">
-        <div class="wrapper col1">
-            <div class="accordion">
-                <div id="socialise">
-                    <div class="imgholder">
-                        <ul>
-                            <li><a href="https://github.com/mendyraul"><img src="/styles/layout/images/github.jpg" alt="" /><span> Github </span></a></li>
-                            
-                            <li><a href="https://www.faulacrosse.com"><img src="/styles/layout/images/FAULAX.png" alt="" /><span> FAU Lacrosse</span></a></li>
-                            <!-- <li><a href="#"><img src="styles/layout/images/linkedin.gif" alt="" /><span>Linked In</span></a></li> -->
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- ################################# NAVIGATION SECTION ########################################### -->
-        <div class="wrapper col2">
-            <div id="header">
-                <p class="toggler"><a id="slideit" href="#socialise">Click Here to Socialize!</a><a id="closeit" style="display:none;" href="#socialise">Close Panel</a></p>
-                <button id="menu-toggle">Menu</button>
-                <br class="clear" />
-                <nav id="topnav" class="hidden">
-                    <ul>
-                        <li><a href="/index.html">Homepage</a></li>
-                        <li><a href="/pages/projects.html">Projects </a></li>
-                        <!-- <li><a href="/pages/blog.php">Blog</a></li> -->
-                        <li><a href="/pages/widgets.html">Widgets</a></li>
-                        <li><a href="/pages/dogblog.html">Dogs</a></li>
-                        <li class="active"><a href="/pages/encryption.html">Encryption</a></li> 
-                    </ul>
-                </nav>
-                <br class="clear" />
-            </div>
-        </div>
+        <div data-include="/partials/header.html"></div>
         <!-- #####################################    ############################################## -->
         <div class="wrapper col3">
             <section class="text-container">
@@ -194,30 +161,7 @@ Licence URI: http://www.os-templates.com/template-terms
                 <br class="clear" />
             </div>
         </div>
+        <div data-include="/partials/footer.html"></div>
+        <script type="text/javascript" src="/scripts/include.js"></script>
     </body>
-    <footer>
-        <!-- ####################################################################################################### -->
-        <div class="wrapper col5">
-            <div id="footer">
-                <div class="box contactdetails">
-                <h2>My Contact Details </h2>
-                <ul>
-                    <li>Fort Lauderdale, FL</li>
-                    <li>Tel: (954)-294-4244</li>
-                    <li><a href="mailto:raul.mendy@outlook.com"> Email:</a> raul.mendy@outlook.com</li>
-                    <li class="last"><a href="/assests/RaulMendyResume.pdf">Resume</a></li>
-                </ul>
-                </div>
-                </div>
-                <br class="clear" />
-            </div>
-        </div>
-        <!-- ####################################################################################################### -->
-        <div class="wrapper col6">
-        <div id="copyright">
-            <p class="fl_left">Copyright &copy; 2014 - All Rights Reserved </p>
-            <p class="fl_right">Template by <a target="_blank" href="http://www.os-templates.com/" title="Free Website Templates">OS Templates</a></p>
-            <br class="clear" />
-        </div>
-     </footer>
 </html>
