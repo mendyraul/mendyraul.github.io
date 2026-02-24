@@ -566,8 +566,25 @@
 
 .blackjack-shell .controls{
   display: grid;
-  grid-template-columns: repeat(4, minmax(100px, 1fr));
+  grid-template-columns: repeat(5, minmax(90px, 1fr));
   gap: 0.8rem;
+}
+
+.blackjack-shell .table-tip{
+  margin: 0;
+  text-align: right;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+@media (max-width: 760px){
+  .blackjack-shell .controls{
+    grid-template-columns: repeat(2, minmax(120px, 1fr));
+  }
+
+  .blackjack-shell .table-tip{
+    text-align: left;
+  }
 }
 
 .blackjack-shell .history-panel{
