@@ -6,6 +6,7 @@ const hitBtn = document.getElementById("hitBtn");
 const stayBtn = document.getElementById("stayBtn");
 const doubleBtn = document.getElementById("doubleBtn");
 const splitBtn = document.getElementById("splitBtn");
+const surrenderBtn = document.getElementById("surrenderBtn");
 const addChipsBtn = document.getElementById("addChipsBtn");
 const bankAmountEl = document.getElementById("bankAmount");
 const betInput = document.getElementById("betInput");
@@ -208,12 +209,10 @@ function renderPlayerHands() {
   });
 
   if (splitIndicatorEl) {
-  if (splitIndicatorEl) {
     splitIndicatorEl.textContent = state.playerHands.length > 1
       ? `Playing Hand ${state.activeHandIndex + 1}/${state.playerHands.length}`
       : "Hand 1";
   }
-}
 }
 
 function createCardEl(card, hidden = false) {
@@ -431,6 +430,23 @@ async function handleSplit() {
   updateControls();
 }
 
+async function handleSurrender() {
+  if (!canSurrenderActiveHand()) return;
+  const hand = getActiveHand();
+  if (!hand) return;
+
+  const returned = Math.ceil(hand.bet / 2);
+  hand.finished = true;
+  finishHand(hand, state.activeHandIndex, "lose", `Surrendered. ${returned} chips returned.`);
+  state.bank += returned;
+  state.roundActive = false;
+  state.activeHandIndex = 0;
+  state.dealerRevealed = true;
+  renderHands();
+  updateBankDisplay();
+  updateControls();
+}
+
 function canSplitActiveHand() {
   if (!state.roundActive || state.animating) return false;
   if (state.playerHands.length >= 2) return false;
@@ -446,6 +462,15 @@ function canDoubleActiveHand() {
   if (!hand || hand.finished) return false;
   if (hand.cards.length !== 2 || hand.doubled) return false;
   return state.bank >= hand.bet;
+}
+
+function canSurrenderActiveHand() {
+  if (!state.roundActive || state.animating) return false;
+  const hand = getActiveHand();
+  if (!hand || hand.finished) return false;
+  // Only as first decision on an unsplit two-card hand.
+  if (state.playerHands.length > 1) return false;
+  return hand.cards.length === 2;
 }
 
 async function advanceHandOrDealer() {
@@ -572,6 +597,7 @@ function updateControls() {
   stayBtn.disabled = lock;
   doubleBtn.disabled = lock || !canDoubleActiveHand();
   splitBtn.disabled = lock || !canSplitActiveHand();
+  if (surrenderBtn) surrenderBtn.disabled = lock || !canSurrenderActiveHand();
   dealBtn.disabled = state.roundActive || state.animating;
 }
 
@@ -592,10 +618,22 @@ hitBtn.addEventListener("click", handleHit);
 stayBtn.addEventListener("click", () => handleStay());
 doubleBtn.addEventListener("click", handleDouble);
 splitBtn.addEventListener("click", handleSplit);
+if (surrenderBtn) surrenderBtn.addEventListener("click", handleSurrender);
 addChipsBtn.addEventListener("click", () => {
   state.bank += 10;
   updateBankDisplay();
 });
 clearHistoryBtn.addEventListener("click", clearHistory);
+
+document.addEventListener("keydown", (event) => {
+  if (!state.roundActive || state.animating) return;
+  if (["INPUT", "TEXTAREA"].includes(document.activeElement?.tagName)) return;
+
+  const key = event.key.toLowerCase();
+  if (key === "h") handleHit();
+  else if (key === "s") handleStay();
+  else if (key === "d") handleDouble();
+  else if (key === "p") handleSplit();
+});
 
 init();
