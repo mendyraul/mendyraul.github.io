@@ -19,8 +19,27 @@ Licence URI: http://www.os-templates.com/template-terms
         <link rel="stylesheet" href="/styles/beat-the-deck.css" type="text/css" />
         <link rel="stylesheet" href="/styles/modal.css" type="text/css" />
         <link rel="stylesheet" href="/styles/snake.css" type="text/css" />
+        <style>
+            .widgets-page .wrapper.col3,
+            .widgets-page .wrapper.col4,
+            .widgets-page .wrapper.col3 p,
+            .widgets-page .wrapper.col4 p,
+            .widgets-page .wrapper.col3 span,
+            .widgets-page .wrapper.col4 span,
+            .widgets-page .wrapper.col3 h2,
+            .widgets-page .wrapper.col4 h2 {
+                color: #000000;
+            }
+
+            .widgets-page .widget-title,
+            .widgets-page .beat-title,
+            .widgets-page .snake-title,
+            .widgets-page #title {
+                font-weight: 700;
+            }
+        </style>
     </head>
-    <body id="top">
+    <body id="top" class="widgets-page">
         <div data-include="/partials/header.html"></div>
         <!-- ####################################################################################################### -->
          <!-- add beat the deck widget -->
@@ -61,7 +80,7 @@ Licence URI: http://www.os-templates.com/template-terms
 
                 <!-- Explain Game annd tictactoe picture -->
                 <center>
-                    <h2>Tic Tac Toe</h2>
+                    <h2 class="widget-title">Tic Tac Toe</h2>
                     <img src="/assests/img/Tic_tac_toe.svg.png" alt="Tic Tac Toe" style="width: 50%; max-width: 320px;" />
                 </center>
                 <!-- Game -->
@@ -74,7 +93,7 @@ Licence URI: http://www.os-templates.com/template-terms
         <div class="wrapper col4" id="">
             <div class="overview">
                 <!-- TO-DO -> Make fix border on title -->
-                <center><h2 id="title">Calculator</h2></center>
+                <center><h2 id="title" class="widget-title">Calculator</h2></center>
                     <center>
                     <div class="calculator">
                         <input type="text" id="display" disabled>
