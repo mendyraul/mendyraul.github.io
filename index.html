@@ -4,163 +4,48 @@
     <title>Raul Mendy | Software Engineer</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta
-      name="description"
-      content="Raul Mendy's personal site featuring software projects, experiments, games, and contact information."
-    />
+    <meta name="description" content="Raul Mendy, software engineer. Research on power transformer condition monitoring, software projects, and browser games." />
     <link rel="icon" type="image/jpeg" href="/assests/img/IMG_9188.jpeg" />
-    <link rel="stylesheet" href="styles/layout.css" type="text/css" />
-    <script type="text/javascript" src="scripts/jquery.min.js"></script>
+    <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+    <script src="/scripts/jquery.min.js"></script>
   </head>
-  <body id="top">
+  <body id="top" class="home-page">
     <div data-include="/partials/header.html"></div>
-
-    <div class="wrapper col3">
-      <section class="home-hero">
-        <div class="home-hero__content">
-          <p class="eyebrow">Software engineer • builder • curious troublemaker</p>
-          <h1>Projects with a little more personality than a default portfolio.</h1>
-          <p class="home-hero__lede">
-            I'm Raul Mendy, a computer science graduate who likes useful tools,
-            experimental side quests, and shipping things that are both
-            practical and a little fun.
-          </p>
-          <div class="home-hero__actions">
-            <a class="cta cta--primary" href="/pages/projects.html">View Projects</a>
-            <a class="cta cta--secondary" href="/assests/RaulMendyResume.pdf">Open Resume</a>
-          </div>
-          <ul class="home-hero__stats">
-            <li>
-              <strong>Focus</strong>
-              <span>Full-stack apps, automation, AI-assisted workflows</span>
-            </li>
-            <li>
-              <strong>Style</strong>
-              <span>Ship the useful thing first, then make it sharper</span>
-            </li>
-            <li>
-              <strong>Bonus</strong>
-              <span>Yes, there is blackjack and a dog page</span>
-            </li>
-          </ul>
-        </div>
-        <div class="home-hero__media">
-          <div class="portrait-card">
-            <img src="/assests/img/IMG_Webpage.jpeg" alt="Portrait of Raul Mendy" />
-          </div>
-          <div class="signal-card">
-            <p class="signal-card__label">Current vibe</p>
-            <p class="signal-card__title">Code, experiments, and weirdly specific tools.</p>
-            <p class="signal-card__copy">
-              This site is the front door to my projects, small web toys, and
-              the work I keep iterating on.
-            </p>
+    <main class="home-main">
+      <section class="home-hero" aria-labelledby="home-title">
+        <div>
+          <p class="eyebrow">Software engineer</p>
+          <h1 id="home-title">Raul Mendy</h1>
+          <p class="home-hero__lede">I'm a computer science graduate based in Fort Lauderdale, Florida. My work includes machine learning research, web applications, and developer tools.</p>
+          <div class="home-links">
+            <a href="/pages/projects.html">Projects</a>
+            <a href="/assests/RaulMendyResume.pdf">Resume</a>
+            <a href="https://github.com/mendyraul">GitHub</a>
           </div>
         </div>
+        <img class="home-portrait" src="/assests/img/IMG_9188.jpeg" alt="Raul Mendy with his dog" width="240" height="300" />
       </section>
-    </div>
 
-    <div class="wrapper col4">
-      <section class="home-section home-section--intro">
-        <div class="section-heading">
-          <p class="eyebrow">What this site is for</p>
-          <h2>Less brochure, more guided tour.</h2>
-        </div>
-        <div class="feature-grid">
-          <article class="feature-card">
-            <h3>Projects that show real problem-solving</h3>
-            <p>
-              From flight data and AI fault diagnostics to developer tooling, I
-              use projects to show how I think, not just what I can list on a
-              resume.
-            </p>
-          </article>
-          <article class="feature-card">
-            <h3>Interactive experiments</h3>
-            <p>
-              Not everything needs to be dead serious. Some pages are here to
-              test ideas, mess with UI, or build something playful on purpose.
-            </p>
-          </article>
-          <article class="feature-card">
-            <h3>A better snapshot of how I work</h3>
-            <p>
-              This homepage points visitors toward the strongest material first
-              instead of making them dig through an old template.
-            </p>
-          </article>
-        </div>
-      </section>
-    </div>
-
-    <div class="wrapper col3">
-      <section class="home-section">
-        <div class="section-heading">
-          <p class="eyebrow">Featured work</p>
-          <h2>Start here if you want the good stuff first.</h2>
-        </div>
-        <div class="project-spotlight-grid">
-          <article class="project-spotlight">
-            <img src="/assests/img/Interface3.png" alt="Triple-phase signal fault classifier preview" />
-            <div>
-              <h3>Triple-Phase Signal Fault Classifier</h3>
-              <p>
-                An internship research build centered on AI-assisted fault
-                diagnosis and an NLP interface for power-system data.
-              </p>
-              <a href="/pages/projects.html">See project details</a>
+      <section class="research-feature" aria-labelledby="research-title">
+        <p class="eyebrow">Research · ICMLA 2023</p>
+        <div class="research-feature__layout">
+          <div>
+            <h2 id="research-title">A ChatGPT-like Solution for Power Transformer Condition Monitoring</h2>
+            <p>I co-authored this paper on using transformer models to classify electrical faults and bring diagnostic results into a conversational interface.</p>
+            <p class="research-authors">Joseph Accurso, Raul Mendy, Aira Torres, and Yufei Tang<br />Florida Atlantic University</p>
+            <div class="home-links">
+              <a class="research-link" href="https://ieeexplore.ieee.org/document/10459800">Read on IEEE Xplore <span aria-hidden="true">↗</span></a>
+              <a href="/assests/REU_Symposium_2023_GPT_PowerTransformer-2.pdf">Paper PDF</a>
             </div>
-          </article>
-          <article class="project-spotlight">
-            <img src="/assests/img/fliight-html.png" alt="Flight detector project preview" />
-            <div>
-              <h3>MIA International Flight Detector</h3>
-              <p>
-                A flight-data application for tracking arrivals, departures, and
-                airline delay patterns around Miami International Airport.
-              </p>
-              <a href="https://track-flights-web.vercel.app/">Open live project</a>
-            </div>
-          </article>
-          <article class="project-spotlight">
-            <img src="/assests/img/spades.png" alt="Dungeon CLI card art" />
-            <div>
-              <h3>dungeon-cli</h3>
-              <p>
-                A terminal-first dungeon crawler project with enough chaos to
-                stay interesting and enough structure to keep building on.
-              </p>
-              <a href="https://github.com/mendyraul/dungeon-cli">View on GitHub</a>
-            </div>
-          </article>
+          </div>
+          <figure>
+            <img src="/assests/img/Interface3.png" alt="Power transformer fault classification interface" />
+            <figcaption>The fault classification interface from the project.</figcaption>
+          </figure>
         </div>
       </section>
-    </div>
-
-    <div class="wrapper col4">
-      <section class="home-section home-section--play">
-        <div class="section-heading">
-          <p class="eyebrow">Also on this site</p>
-          <h2>The homepage should point people somewhere fun, too.</h2>
-        </div>
-        <div class="mini-link-grid">
-          <a class="mini-link-card" href="/pages/blackjack.html">
-            <span>Blackjack</span>
-            <strong>Casino-style side project energy</strong>
-          </a>
-          <a class="mini-link-card" href="/pages/widgets.html">
-            <span>Widgets</span>
-            <strong>Small interactive browser experiments</strong>
-          </a>
-          <a class="mini-link-card" href="/pages/dogblog.html">
-            <span>Dogs</span>
-            <strong>A page that exists because not everything has to be serious</strong>
-          </a>
-        </div>
-      </section>
-    </div>
-
+    </main>
     <div data-include="/partials/footer.html"></div>
-    <script type="text/javascript" src="/scripts/include.js"></script>
+    <script src="/scripts/include.js"></script>
   </body>
 </html>

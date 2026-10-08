@@ -19,47 +19,15 @@ Licence URI: http://www.os-templates.com/template-terms
         <link rel="stylesheet" href="/styles/beat-the-deck.css" type="text/css" />
         <link rel="stylesheet" href="/styles/modal.css" type="text/css" />
         <link rel="stylesheet" href="/styles/snake.css" type="text/css" />
-        <style>
-            .widgets-page .wrapper.col3,
-            .widgets-page .wrapper.col4,
-            .widgets-page .wrapper.col3 p,
-            .widgets-page .wrapper.col4 p,
-            .widgets-page .wrapper.col3 span,
-            .widgets-page .wrapper.col4 span,
-            .widgets-page .wrapper.col3 h2,
-            .widgets-page .wrapper.col4 h2 {
-                color: #000000;
-            }
-
-            .widgets-page .widget-title,
-            .widgets-page .beat-title,
-            .widgets-page .snake-title,
-            .widgets-page #title {
-                font-weight: 700;
-            }
-        </style>
+        <link rel="stylesheet" href="/styles/widgets.css" type="text/css" />
     </head>
     <body id="top" class="widgets-page">
         <div data-include="/partials/header.html"></div>
-        <!-- ####################################################################################################### -->
-         <!-- add beat the deck widget -->
-        <div class="wrapper col3">
-            <div class="beat-widget">
-                <h2 class="beat-title">Beat the Deck</h2>
-                <p class="beat-rules">Guess higher or lower on any pile. If you miss, that pile flips down and can’t be played. Run through the full deck without losing all piles.</p>
-                <div class="beat-meta">
-                    <span id="beatRemaining">Deck: 52</span>
-                    <button id="beatRestart" type="button">Restart</button>
-                </div>
-                <p class="beat-status" id="beatStatus">Hover a pile and choose higher or lower.</p>
-                <div class="beat-grid" id="beatGrid"></div>
-            </div>
-        </div>
-        <!-- ####################################################################################################### -->
-         <!-- add snake widget -->
-        <div class="wrapper col3">
-            <div class="snake-widget">
-                <h2 class="snake-title">Snake</h2>
+        <main class="widgets-main">
+            <h1>Widgets</h1>
+            <section class="widget-section snake-widget" aria-labelledby="snake-title">
+                <h2 id="snake-title">Snake</h2>
+                <p>Collect food and keep growing. Use arrow keys or swipe on the board.</p>
                 <div class="snake-panel">
                     <div class="snake-meta">
                         <span>Score: <strong id="snakeScore">0</strong></span>
@@ -68,80 +36,26 @@ Licence URI: http://www.os-templates.com/template-terms
                         <button id="snakeStop" type="button">Stop</button>
                         <button id="snakeRestart" type="button">Restart</button>
                     </div>
-                    <p class="snake-status" id="snakeStatus">Press Start to play.</p>
-                    <p class="snake-help">Use arrow keys or swipe on the board.</p>
-                    <canvas class="snake-canvas" id="snakeCanvas"></canvas>
+                    <p class="snake-status" id="snakeStatus" aria-live="polite">Press Start to play.</p>
+                    <canvas class="snake-canvas" id="snakeCanvas" aria-label="Snake game board"></canvas>
                 </div>
-            </div>
-        </div>
-        <!-- ####################################################################################################### -->
-        <div class="wrapper col3">
-            <div id="container">
-
-                <!-- Explain Game annd tictactoe picture -->
-                <center>
-                    <h2 class="widget-title">Tic Tac Toe</h2>
-                    <img src="/assests/img/Tic_tac_toe.svg.png" alt="Tic Tac Toe" style="width: 50%; max-width: 320px;" />
-                </center>
-                <!-- Game -->
-                <center>
-                    <div id="tictactoe"></div>
-                </center>
-            </div>
-        </div>
-        <!-- ####################################################################################################### -->
-        <div class="wrapper col4" id="">
-            <div class="overview">
-                <!-- TO-DO -> Make fix border on title -->
-                <center><h2 id="title" class="widget-title">Calculator</h2></center>
-                    <center>
-                    <div class="calculator">
-                        <input type="text" id="display" disabled>
-                        <div class="buttons">
-                            <div class="button-row">
-                                <button class="number" onclick="appendToDisplay('1')">1</button>
-                                <button class="number" onclick="appendToDisplay('2')">2</button>
-                                <button class="number" onclick="appendToDisplay('3')">3</button>
-                            </div>
-                            <div class="button-row">
-                                <button class="number" onclick="appendToDisplay('4')">4</button>
-                                <button class="number" onclick="appendToDisplay('5')">5</button>
-                                <button class="number" onclick="appendToDisplay('6')">6</button>
-                            </div>
-                            <div class="button-row">
-                                <button class="number" onclick="appendToDisplay('7')">7</button>
-                                <button class="number" onclick="appendToDisplay('8')">8</button>
-                                <button class="number" onclick="appendToDisplay('9')">9</button>
-                            </div>
-                            <div class="button-row">
-                                <button onclick="clearDisplay()">c</button>
-                                <button class="number" onclick="appendToDisplay('0')">0</button>
-                                <button onclick="calculateResult()">=</button>
-                            </div>
-                            <div class="button-row">
-                                <button onclick="appendToDisplay('+')">+</button>
-                                <button onclick="appendToDisplay('-')">-</button>
-                                <button onclick="appendToDisplay('*')">*</button>
-                            </div>
-                            <div class="button-row">
-                                <button onclick="appendToDisplay('/')">/</button>
-                                <button onclick="appendToDisplay('sqrt(')">√</button>
-                                <button onclick="appendToDisplay(')')">)</button>
-                            </div>
-                            <div class="button-row">
-                                <button onclick="appendToDisplay('sin(')">sin</button>
-                                <button onclick="appendToDisplay('cos(')">cos</button>
-                                <button onclick="appendToDisplay('tan(')">tan</button>
-                            </div>
-                        </div>
-                    </div>
-                    </center>
+            </section>
+            <section class="widget-section blackjack-widget" aria-labelledby="blackjack-title">
+                <h2 id="blackjack-title">Blackjack</h2>
+                <p>Play against the dealer. Get as close to 21 as you can without going over.</p>
+                <a class="widget-link" href="/pages/blackjack.html">Play Blackjack <span aria-hidden="true">→</span></a>
+            </section>
+            <section class="widget-section beat-widget" aria-labelledby="beat-title">
+                <h2 id="beat-title">Beat the Deck</h2>
+                <p class="beat-rules">Guess higher or lower on any pile. A wrong guess closes that pile. Finish the deck before all piles close.</p>
+                <div class="beat-meta">
+                    <span id="beatRemaining">Deck: 52</span>
+                    <button id="beatRestart" type="button">Restart</button>
                 </div>
-                
-                <br class="clear" />
-            </div>
-        </div>
-        <!-- ####################################################################################################### -->
+                <p class="beat-status" id="beatStatus" aria-live="polite">Choose higher or lower on a pile.</p>
+                <div class="beat-grid" id="beatGrid"></div>
+            </section>
+        </main>
         <div data-include="/partials/footer.html"></div>
         <div class="modal-backdrop" id="modalBackdrop">
             <div class="modal-card">
@@ -154,8 +68,6 @@ Licence URI: http://www.os-templates.com/template-terms
         </div>
         <script type="text/javascript" src="/scripts/include.js"></script>
         <script type="text/javascript" src="/scripts/jquery.min.js"></script>
-        <script type="text/javascript" src="/scripts/tictactoe.js"></script>
-        <script type="text/javascript" src="/scripts/calculator.js"></script>
         <script type="text/javascript" src="/scripts/modal.js"></script>
         <script type="text/javascript" src="/scripts/beat-the-deck.js"></script>
         <script type="text/javascript" src="/scripts/snake.js"></script>

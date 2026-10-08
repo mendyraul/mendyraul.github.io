@@ -20,101 +20,52 @@ Licence URI: http://www.os-templates.com/template-terms
         <script type="text/javascript" src="/scripts/jquery.min.js"></script>
         <!-- added js -->
     </head>
-    <body id="top">
+    <body id="top" class="projects-page">
         <div data-include="/partials/header.html"></div>
-        <!-- #####################################   PROJECTS.HTML ONLY ############################################## -->
-        <div class="wrapper col3">
-                        <div id="intro">
-                            <div class="box">
-                                <h2>Welcome To My Online Portfolio !</h2>
-                                <p>I am excited to share with you my projects. 
-                                I've built them to showcase my skills and hopefully much more! </p>
-                                <p>Feel free to contact me with questions or suggestions to improve.</p>
-                            </div>
-                            <div class="box">
-                                <h2>Libraries/Frameworks:</h2>
-                                <ul> 
-                                    <li>Frameworks:</li>
-                                    <li>&raquo; Gradle, Docker, Jest </li> 
-                                    <li>&raquo; SwiftUI, Firebase, Flask</li>
-                                    <li>Libraries: </li>
-                                    <li>&raquo; Cryptopp, ReactJS, Jenkins, DynamodDB</li>
-                                    <li class="last">&raquo; Pandas, NumPy, PyTorch, OpenCV, OpenGI</li>
-                                </ul>
-                            </div>
-                            <div class="box">
-                                <h2>Languages</h2>
-                                <ul>
-                                    <li>&raquo; Python</li>
-                                    <li>&raquo; C/C++</li>
-                                    <li>&raquo; HTML/CSS/JavaScript</li>
-                                    <li>&raquo; SQL</li>
-                                    <li>&raquo; Java</li>
-                                    <li>&raquo; Tools:</li>
-                                    <li class="last">&raquo; Git, Linux/Unix, Maven, Jenkins, Azure, Jira, MS Project, SPSS </li></li>
-                                </ul>
-                            </div>
-                            <br class="clear" />
-                        </div>
-                    </div>
-        <!-- ####################################################################################################### -->
-
-
-
-                </ul>
-                <br class="clear" />
-            </div>
-        </div>
         <div class="wrapper col4" id="Projects">
             <div class="overview">
-                <h2 id="title">Projects</h2>
+                <h1 id="title">Projects</h1>
                 <ul>
                     <li>
                         <div class="imgholder"><img src="/assests/img/Interface3.png" alt="" /></div>
                         <h2> Triple-Phase Signal Fault Classifier</h2>
-                        <p> For my software engineering internship, we were tasked to build an AI fault diagnostic tool with a NLP interface. Read about our research <a href="/assests/REU_Symposium_2023_GPT_PowerTransformer-2.pdf">here.</a></p>
+                        <p> A research project on classifying power transformer faults with a conversational interface. Read our paper on <a href="https://ieeexplore.ieee.org/document/10459800">IEEE Xplore</a>.</p>
                         <p class="readmore"><a href="https://github.com/mendyraul/FPL_Datasets/tree/main">Explore This Project &raquo;</a></p>
                     </li>
                     <li>
                         <div class="imgholder"><img src="/assests/img/Animation.gif" alt="" /></div>
                         <h2>Encrypt/Decrypt Web Page</h2>
-                        <p>This web page is able to provide private key encryption to text of your liking. You can choose both encryption scheme type and mode!</p>
+                        <p>Encrypt and decrypt text with a choice of algorithm and mode.</p>
                         <p class="readmore"><a href="https://mendyraul.github.io/pages/encryption.html">Explore This Project &raquo;</a></p>
                     </li>
                     <li>
                         <div class="imgholder"><img src="/assests/img/spades.png" alt="" style='height: 80%; width: 80%;margin: auto;'/></div>
                         <h2>Blackjack</h2>
-                        <p>A simple command line interface blackjack game against a dealer. Written in C, I hope to work with Web Assembly to have a more interactive version on my website soon.</p>
+                        <p>A command-line blackjack game written in C, also available in the browser through WebAssembly. <a href="https://dungeon-blackjack-wasm.vercel.app/blackjack">Play</a></p>
                         <p class="readmore"><a href="https://github.com/mendyraul/blackjack"> Explore This Project &raquo;</a></p>
                     </li>
                     <li class="last">
-                        <div class="imgholder"><img src=/assests/img/Under-Construction-Sign-K-7181.gif" alt="" style='height: 80%; width: 80%; margin-top: 0;'/></div>
+                        <div class="imgholder"><img src="/assests/img/dungeon-cli.png" alt="dungeon-cli preview"/></div>
                         <h2>dungeon-cli</h2>
-                        <p>A command-line dungeon crawler with more chaos still to come. The long-term plan is a proper webpage/WebAssembly version.</p>
+                        <p>A dungeon crawler played in the terminal, also available in the browser through WebAssembly. <a href="https://dungeon-blackjack-wasm.vercel.app/dungeon">Play</a></p>
                         <p class="readmore"><a href="https://github.com/mendyraul/dungeon-cli"> Explore This Project &raquo;</a></p>
                     </li>
                     <li>
                         <div class="imgholder"><img src="/assests/img/fliight-html.png" alt="" style='height: 80%; width: 80%;margin-top: 0;'/></div>
-                        <h2>MIA International flight detector</h2>
-                        <p><a href="/assests/Flight Project.pdf">Design -</a> Using a flight tracking API, this application pulls flight data for all flights arriving and leaving Miami International Airport and interacts with the data such as predicting average delays per airline. </p>
+                        <h2>MIA International Flight Detector</h2>
+                        <p>Track arrivals, departures, and airline delays at Miami International Airport. <a href="/assests/Flight Project.pdf">Read the design document</a>.</p>
                         <p class="readmore"><a href="https://track-flights-web.vercel.app/"> Explore This Project &raquo;</a></p>
                     </li>
                     <li>
                         <div class="imgholder"><img src="/assests/img/download.png" alt="" style='height: 80%; width: 80%; margin-top: 0;'/></div>
                         <h2>leetcodevim</h2>
-                        <p>A Vim-first LeetCode workflow that makes it easier to pull problems, work locally, run tests, and stay in the editor instead of bouncing through the browser.</p>
+                        <p>Fetch LeetCode problems, solve them locally, and run tests from Vim.</p>
                         <p class="readmore"><a href="https://github.com/mendyraul/leetcodevim"> Explore This Project &raquo;</a></p>
-                    </li>
-                    <li>
-                        <div class="imgholder"><img src="/assests/img/shoppingCartImg.png" alt="" style='height: 80%; width: 80%; margin-top: 0;'/></div>
-                        <h2>Shopping Application</h2>
-                        <p>Built for my Object-Oriented Design class, this Java program lists items for sale and uses an interactive shopping cart in order to add, delete or modify items of interest. </p>
-                        <p class="readmore"><a href="https://github.com/mendyraul/shoppingCart"> Explore This Project &raquo;</a></p>
                     </li>
                     <li class="last">
                         <div class="imgholder"><img src="/assests/img/Under-Construction-Sign-K-7181.gif" alt="" style='height: 80%; width: 80%; margin-top: 0;'/></div>
                         <h2>reviewpulse</h2>
-                        <p>A review workflow project that injects CodeRabbit comments into agentic AI loops so review feedback can turn into continuous follow-up work instead of getting lost.</p>
+                        <p>Pass CodeRabbit review comments to coding agents for follow-up changes.</p>
                         <p class="readmore"><a href="https://github.com/mendyraul/reviewpulse"> Explore This Project &raquo;</a></p>
                     </li>
                 </ul>

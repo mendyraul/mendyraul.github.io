@@ -15,6 +15,8 @@ const roundStatusEl = document.getElementById("roundStatus");
 const currentBetEl = document.getElementById("currentBet");
 const historyList = document.getElementById("historyList");
 const clearHistoryBtn = document.getElementById("clearHistoryBtn");
+const historyEmptyEl = document.getElementById("historyEmpty");
+const betPresetButtons = document.querySelectorAll("[data-bet]");
 const tableStageEl = document.querySelector(".table-stage");
 const shoeEl = document.getElementById("cardShoe");
 const shoeMouthEl = document.querySelector(".shoe-mouth");
@@ -144,12 +146,32 @@ function getHandLabel(index) {
 }
 
 function updateBankDisplay() {
-  bankAmountEl.textContent = `Chips: ${state.bank}`;
+  bankAmountEl.textContent = state.bank.toLocaleString();
   betInput.max = state.bank;
-  if (Number(betInput.value) > state.bank) {
-    betInput.value = Math.max(state.bank, 0);
+  if (!state.roundActive && state.bank > 0 && Number(betInput.value) > state.bank) {
+    betInput.value = state.bank;
   }
-  currentBetEl.textContent = `Current Bet: ${getActiveBetAmount()}`;
+  currentBetEl.textContent = `Bet ${getActiveBetAmount()}`;
+  updateBetPresets();
+}
+
+function updateBetPresets() {
+  betPresetButtons.forEach((button) => {
+    const amount = button.dataset.bet === "max" ? state.bank : Number(button.dataset.bet);
+    button.disabled = state.roundActive || state.animating || amount < 1 || amount > state.bank;
+    button.setAttribute("aria-pressed", String(amount > 0 && Number(betInput.value) === amount));
+  });
+}
+
+function createEmptyCardSlots() {
+  const slots = document.createDocumentFragment();
+  for (let i = 0; i < 2; i += 1) {
+    const slot = document.createElement("div");
+    slot.className = "card card-placeholder";
+    slot.setAttribute("aria-hidden", "true");
+    slots.appendChild(slot);
+  }
+  return slots;
 }
 
 function getActiveBetAmount() {
@@ -164,13 +186,14 @@ function renderHands() {
 
 function renderDealerHand() {
   dealerCardsEl.innerHTML = "";
+  if (!state.dealerHand.length) dealerCardsEl.appendChild(createEmptyCardSlots());
   state.dealerHand.forEach((card, index) => {
     const hidden = !state.dealerRevealed && index === 1;
     dealerCardsEl.appendChild(createCardEl(card, hidden));
   });
   dealerScoreEl.textContent = state.dealerRevealed
-    ? `Score: ${calculateScore(state.dealerHand).total}`
-    : "Score: --";
+    ? `Total ${calculateScore(state.dealerHand).total}`
+    : state.dealerHand.length ? "Hidden" : "—";
 }
 
 function renderPlayerHands() {
@@ -179,6 +202,12 @@ function renderPlayerHands() {
     return;
   }
   playerHandsEl.innerHTML = "";
+  if (!state.playerHands.length) {
+    const emptyCards = document.createElement("div");
+    emptyCards.className = "cards";
+    emptyCards.appendChild(createEmptyCardSlots());
+    playerHandsEl.appendChild(emptyCards);
+  }
   state.playerHands.forEach((hand, index) => {
     const wrapper = document.createElement("div");
     wrapper.classList.add("player-subhand");
@@ -189,6 +218,7 @@ function renderPlayerHands() {
     const label = document.createElement("div");
     label.classList.add("hand-label");
     label.textContent = getHandLabel(index);
+    label.hidden = state.playerHands.length === 1;
     wrapper.appendChild(label);
 
     const cardsEl = document.createElement("div");
@@ -202,13 +232,14 @@ function renderPlayerHands() {
     const scoreEl = document.createElement("div");
     scoreEl.classList.add("score");
     const score = calculateScore(hand.cards).total;
-    scoreEl.textContent = `Score: ${hand.cards.length ? score : "--"}`;
+    scoreEl.textContent = `Total ${hand.cards.length ? score : "—"}`;
     wrapper.appendChild(scoreEl);
 
     playerHandsEl.appendChild(wrapper);
   });
 
   if (splitIndicatorEl) {
+    splitIndicatorEl.hidden = state.playerHands.length < 2;
     splitIndicatorEl.textContent = state.playerHands.length > 1
       ? `Playing Hand ${state.activeHandIndex + 1}/${state.playerHands.length}`
       : "Hand 1";
@@ -218,18 +249,33 @@ function renderPlayerHands() {
 function createCardEl(card, hidden = false) {
   const cardEl = document.createElement("div");
   cardEl.classList.add("card");
+  cardEl.setAttribute("role", "img");
   if (hidden) {
     cardEl.classList.add("back");
+    cardEl.setAttribute("aria-label", "Face-down card");
     return cardEl;
   }
+  const suitNames = { "♠": "spades", "♥": "hearts", "♦": "diamonds", "♣": "clubs" };
+  const rankNames = { A: "Ace", J: "Jack", Q: "Queen", K: "King" };
+  cardEl.setAttribute("aria-label", `${rankNames[card.rank] || card.rank} of ${suitNames[card.suit]}`);
   if (COLORS[card.suit] === "red") cardEl.classList.add("red");
-  const rankEl = document.createElement("div");
-  rankEl.textContent = card.rank;
-  const suitEl = document.createElement("div");
-  suitEl.classList.add("suit");
-  suitEl.textContent = card.suit;
-  cardEl.appendChild(rankEl);
-  cardEl.appendChild(suitEl);
+  for (const position of ["top", "bottom"]) {
+    const corner = document.createElement("span");
+    corner.className = `card-corner${position === "bottom" ? " card-corner--bottom" : ""}`;
+    corner.setAttribute("aria-hidden", "true");
+    const rank = document.createElement("span");
+    rank.textContent = card.rank;
+    const suit = document.createElement("span");
+    suit.className = "suit";
+    suit.textContent = card.suit;
+    corner.append(rank, suit);
+    cardEl.appendChild(corner);
+  }
+  const center = document.createElement("span");
+  center.className = "card-center";
+  center.textContent = card.suit;
+  center.setAttribute("aria-hidden", "true");
+  cardEl.appendChild(center);
   return cardEl;
 }
 
@@ -257,17 +303,16 @@ async function dealCardToHand(hand, owner, handIndex = state.activeHandIndex) {
 function animateDealTo(targetEl, owner = "player") {
   return new Promise((resolve) => {
     const sourceNode = shoeMouthEl || shoeEl;
-    if (!tableStageEl || !sourceNode || !targetEl) {
+    if (!tableStageEl || !sourceNode || !targetEl || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       resolve();
       return;
     }
     const stageRect = tableStageEl.getBoundingClientRect();
     const sourceRect = sourceNode.getBoundingClientRect();
     const targetRect = targetEl.getBoundingClientRect();
-    const remainingRatio = Math.max(0, cardsRemaining() / TOTAL_CARDS);
-    const sizeScale = 0.6 + 0.4 * remainingRatio;
-    const cardWidth = 70 * sizeScale;
-    const cardHeight = 100 * sizeScale;
+    const referenceCard = document.querySelector(".blackjack-shell .card:not(.card-flight)");
+    const cardWidth = referenceCard?.getBoundingClientRect().width || 78;
+    const cardHeight = referenceCard?.getBoundingClientRect().height || 112;
 
     const cardEl = document.createElement("div");
     cardEl.classList.add("card", "back", "card-flight");
@@ -308,15 +353,16 @@ function animateDealTo(targetEl, owner = "player") {
     });
 
     cardEl.addEventListener("transitionend", finish, { once: true });
-    setTimeout(finish, 750);
+    setTimeout(finish, 450);
   });
 }
 
 async function dealHand() {
   const bet = Number(betInput.value);
   if (state.roundActive || state.animating) return;
-  if (!bet || bet < 1) {
-    roundStatusEl.textContent = "Enter a bet to start.";
+  roundStatusEl.closest(".status-row").removeAttribute("data-outcome");
+  if (!Number.isInteger(bet) || bet < 1) {
+    roundStatusEl.textContent = "Enter a whole-number bet of at least 1 chip.";
     return;
   }
   if (bet > state.bank) {
@@ -362,6 +408,7 @@ function checkOpeningBlackjack() {
     finishHand(playerHand, 0, "lose", "Dealer blackjack. You lose.", { blackjack: true });
   }
   state.roundActive = false;
+  renderHands();
   updateBankDisplay();
   updateControls();
 }
@@ -388,7 +435,7 @@ async function handleStay({ silent = false } = {}) {
   const hand = getActiveHand();
   if (!hand || hand.finished) return;
   hand.finished = true;
-  if (!silent) roundStatusEl.textContent = "You stay.";
+  if (!silent) roundStatusEl.textContent = "You stand. Dealer's turn.";
   await advanceHandOrDealer();
 }
 
@@ -547,6 +594,7 @@ function finishHand(hand, index, outcome, message, opts = {}) {
   }
   state.bank += payout;
   roundStatusEl.textContent = message;
+  roundStatusEl.closest(".status-row").dataset.outcome = outcome;
   addHistoryEntry(hand, index, outcome, message);
   updateBankDisplay();
 }
@@ -569,8 +617,11 @@ function addHistoryEntry(hand, index, outcome, message) {
 
 function renderHistory() {
   historyList.innerHTML = "";
+  if (historyEmptyEl) historyEmptyEl.hidden = state.history.length > 0;
+  clearHistoryBtn.disabled = !state.history.length;
   state.history.forEach((entry) => {
     const li = document.createElement("li");
+    li.dataset.outcome = entry.outcome;
     const outcomeText = entry.outcome === "win" ? "Win" : entry.outcome === "lose" ? "Lose" : "Push";
     const resultSpan = document.createElement("span");
     resultSpan.classList.add("history-outcome");
@@ -599,6 +650,8 @@ function updateControls() {
   splitBtn.disabled = lock || !canSplitActiveHand();
   if (surrenderBtn) surrenderBtn.disabled = lock || !canSurrenderActiveHand();
   dealBtn.disabled = state.roundActive || state.animating;
+  betInput.disabled = state.roundActive || state.animating;
+  updateBetPresets();
 }
 
 function clearHistory() {
@@ -611,7 +664,17 @@ function init() {
   renderHands();
   updateControls();
   updateShoeDisplay();
+  renderHistory();
 }
+
+betPresetButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    if (button.disabled) return;
+    betInput.value = button.dataset.bet === "max" ? state.bank : Number(button.dataset.bet);
+    updateBetPresets();
+  });
+});
+betInput.addEventListener("input", updateBetPresets);
 
 dealBtn.addEventListener("click", dealHand);
 hitBtn.addEventListener("click", handleHit);

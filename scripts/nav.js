@@ -1,16 +1,17 @@
-// Wait for the DOM content to be fully loaded
-window.addEventListener('DOMContentLoaded', event => {
+// The shared header can load after DOMContentLoaded.
+function initializeNav() {
     // Function to toggle the menu
     const toggleMenu = function () {
         const topnav = document.getElementById('topnav');
-        topnav.classList.toggle('hidden');
+        const collapsed = topnav.classList.toggle('hidden');
+        menuToggle.setAttribute('aria-expanded', String(!collapsed));
     };
 
     // Get references to the button and the navigation menu
     const menuToggle = document.getElementById('menu-toggle');
 
     // Add a click event listener to the button
-    menuToggle.addEventListener('click', toggleMenu);
+    if (menuToggle) menuToggle.addEventListener('click', toggleMenu);
 
     // Your existing code...
     // (You can integrate your existing code here or leave it as it is)
@@ -55,7 +56,13 @@ window.addEventListener('DOMContentLoaded', event => {
             }
         });
     });
-});
+}
+
+if (document.readyState === 'loading') {
+    window.addEventListener('DOMContentLoaded', initializeNav, { once: true });
+} else {
+    initializeNav();
+}
 
 
 //socialize Javascript
