@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Raul Mendy's homelab: mini PCs, Raspberry Pis, and a documented network design built to learn networking and infrastructure." />
+    <title>Homelab | Raul Mendy</title>
+    <link rel="icon" type="image/jpeg" href="/assests/img/IMG_9188.jpeg" />
+    <link rel="stylesheet" href="/styles/layout.css" />
+    <link rel="stylesheet" href="/styles/homelab.css" />
+    <script src="/scripts/jquery.min.js"></script>
+  </head>
+  <body id="top" class="homelab-page">
+    <div data-include="/partials/header.html"></div>
+    <main class="homelab-main">
+      <header class="lab-intro">
+        <p class="eyebrow">Networking &amp; infrastructure</p>
+        <h1>Homelab</h1>
+        <p class="lab-lede">Getting into networking led me to collect mini PCs and Raspberry Pis. I'm building a lab around them to learn how to design, operate, and recover a network.</p>
+        <div class="lab-status">
+          <span class="lab-status-label">Under development</span>
+          <p>The hardware is here and the network design is documented. Deployment is next; the architecture and services below are planned.</p>
+        </div>
+        <nav class="lab-sections" aria-label="On this page">
+          <a href="#hardware">Hardware</a>
+          <a href="#architecture">Architecture</a>
+          <a href="#decisions">Design decisions</a>
+          <a href="#next">What's next</a>
+        </nav>
+      </header>
+
+      <section class="lab-section" id="hardware" aria-labelledby="hardware-title">
+        <div class="lab-section-heading">
+          <p class="eyebrow">01 / Hardware</p>
+          <h2 id="hardware-title">What I'm building with</h2>
+          <p>These devices are confirmed in my inventory. Their intended roles are listed below; detailed specifications are still being verified.</p>
+        </div>
+        <div class="hardware-grid">
+          <article class="hardware-card">
+            <p class="hardware-category">Network core <span>1 device</span></p>
+            <h3>MikroTik CRS310</h3>
+            <p class="hardware-model">CRS310-8G+2S+IN</p>
+            <p>Planned core switch, router, firewall, and DHCP server. The network design separates management, workloads, and household devices.</p>
+          </article>
+          <article class="hardware-card">
+            <p class="hardware-category">Virtualization <span>3 devices</span></p>
+            <h3>HP EliteDesks</h3>
+            <p class="hardware-model">Mini PC fleet</p>
+            <p>Intended for a Proxmox cluster running virtual machines and containers. RAM and storage specifications are pending verification.</p>
+          </article>
+          <article class="hardware-card">
+            <p class="hardware-category">Utility &amp; experiments <span>5 devices</span></p>
+            <h3>Raspberry Pi 5s</h3>
+            <p class="hardware-model">3 × 16 GB · 1 × 8 GB · 1 × 4 GB</p>
+            <p>Hardware for dedicated services and experiments. Individual roles are still being assigned, including the two spare 16 GB units.</p>
+          </article>
+          <article class="hardware-card">
+            <p class="hardware-category">Workstation <span>1 device</span></p>
+            <h3>Mac Studio</h3>
+            <p class="hardware-model">Development &amp; administration</p>
+            <p>A workstation in the lab inventory. Its network connection is part of the hardware audit.</p>
+          </article>
+          <article class="hardware-card">
+            <p class="hardware-category">Linux workstation <span>1 device</span></p>
+            <h3>Surface Pro 7</h3>
+            <p class="hardware-model">Ubuntu</p>
+            <p>Planned as a dashboard for lab monitoring once metrics collection is running.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="lab-section" id="architecture" aria-labelledby="architecture-title">
+        <div class="lab-section-heading">
+          <p class="eyebrow">02 / Architecture</p>
+          <h2 id="architecture-title">Separate networks, clear responsibilities</h2>
+          <p>The design uses VLANs to separate traffic by purpose, with inter-VLAN access denied by default and specific exceptions where needed.</p>
+        </div>
+        <figure class="lab-topology">
+          <figcaption><strong>Planned architecture</strong><span>Simplified view · not deployed</span></figcaption>
+          <div class="topology-tree" aria-hidden="true">
+            <div class="topology-core"><span class="topology-kicker">Network control</span><strong>MikroTik CRS310</strong><span>Routing · firewall · DHCP</span></div>
+            <div class="topology-branches">
+              <div class="topology-node"><span class="topology-kicker">Compute</span><strong>HP EliteDesks</strong><span>Proxmox · VMs · containers</span><div class="topology-services">Shared services &amp; storage<br />DNS · backups · object storage</div></div>
+              <div class="topology-node"><span class="topology-kicker">Household</span><strong>Separate traffic zones</strong><span>Trusted devices · IoT · guests</span></div>
+              <div class="topology-node"><span class="topology-kicker">Experiments</span><strong>Isolated lab network</strong><span>Utility devices · test workloads</span></div>
+            </div>
+          </div>
+          <p class="topology-description">The core router connects the planned Proxmox hosts, household networks, and experiment network. Shared services and storage sit alongside compute. Traffic between zones is allowed only through explicit firewall rules.</p>
+        </figure>
+      </section>
+
+      <section class="lab-section" id="decisions" aria-labelledby="decisions-title">
+        <div class="lab-section-heading">
+          <p class="eyebrow">03 / Design decisions</p>
+          <h2 id="decisions-title">The reasoning behind the setup</h2>
+        </div>
+        <div class="lab-decisions">
+          <article>
+            <span class="decision-number" aria-hidden="true">01</span>
+            <div><h3>One source of truth</h3><p>My infrastructure repository previously contained conflicting network plans because address data was maintained in several places. The current approach defines the network in YAML and generates the host documentation, network tables, and router configuration from it.</p><p>Validation checks for overlapping subnets, duplicate addresses, invalid reservations, and mismatched references. CI checks that the generated files match the source data.</p><span class="decision-status">Implemented in the infrastructure repo</span></div>
+          </article>
+          <article>
+            <span class="decision-number" aria-hidden="true">02</span>
+            <div><h3>Keep experiments away from household traffic</h3><p>The design gives management, workloads, trusted devices, IoT, guests, and experiments separate network zones. A default-deny policy makes every exception an explicit decision.</p><p>The aim is to make room for testing configurations without making household connectivity depend on an experiment.</p><span class="decision-status">Documented design · deployment pending</span></div>
+          </article>
+          <article>
+            <span class="decision-number" aria-hidden="true">03</span>
+            <div><h3>Keep storage traffic close to compute</h3><p>Storage and compute share a VLAN in the design, allowing backup and object-storage traffic to be switched rather than routed across a trunk twice.</p><p>The tradeoff: storage isn't a separate network policy boundary. Access control must also be enforced through service accounts and share permissions.</p><span class="decision-status">Documented design · deployment pending</span></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="lab-section lab-next" id="next" aria-labelledby="next-title">
+        <div class="lab-section-heading">
+          <p class="eyebrow">04 / Next steps</p>
+          <h2 id="next-title">From design to a running lab</h2>
+          <p>The network model and configuration generator are in place. The next work is to verify the physical setup and bring it online in stages.</p>
+        </div>
+        <ol class="lab-roadmap">
+          <li><span class="roadmap-state">In progress</span><h3>Verify the hardware</h3><p>Confirm memory, storage, network connections, and device roles against the inventory.</p></li>
+          <li><span class="roadmap-state">Planned</span><h3>Bring up the network</h3><p>Finalize DNS, internal TLS, and IPv6 decisions. Stage the router configuration and validate access between zones.</p></li>
+          <li><span class="roadmap-state">Planned</span><h3>Establish core services</h3><p>Deploy Proxmox, redundant DNS on separate hosts, remote access, and backups. Test recovery before adding more workloads.</p></li>
+          <li><span class="roadmap-state">Planned</span><h3>Add workloads and monitoring</h3><p>Introduce shared object storage and metrics, then document what works with deployment notes and real lab photos.</p></li>
+        </ol>
+      </section>
+    </main>
+    <div data-include="/partials/footer.html"></div>
+    <script src="/scripts/include.js"></script>
+  </body>
+</html>

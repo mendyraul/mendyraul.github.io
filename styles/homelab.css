@@ -1,0 +1,89 @@
+.homelab-main {
+  clear: both;
+  width: min(1040px, calc(100% - 48px));
+  margin: 0 auto;
+  padding-bottom: 28px;
+}
+
+.homelab-main *, .homelab-main *::before, .homelab-main *::after { box-sizing: border-box; }
+.homelab-main h1, .homelab-main h2, .homelab-main h3 { font-family: Georgia, serif; font-weight: normal; }
+.homelab-main h1 { margin: 0; font-size: clamp(3rem, 7vw, 4.5rem); letter-spacing: -0.04em; line-height: 1.1; }
+.homelab-main h2 { margin: 0; font-size: clamp(1.7rem, 3vw, 2.2rem); line-height: 1.25; }
+.homelab-main h3 { margin: 0; font-size: 1.4rem; line-height: 1.3; }
+.homelab-main p:not(.eyebrow) { color: var(--site-muted); line-height: 1.7; }
+.homelab-main a { color: var(--site-accent); text-decoration: underline; text-underline-offset: 4px; }
+.homelab-main a:hover { color: var(--site-ink); }
+.homelab-main section[id] { scroll-margin-top: 24px; }
+
+.lab-intro { padding: 56px 0 40px; }
+.lab-lede { max-width: 700px; margin: 22px 0 28px; font-size: 1.15rem; }
+.lab-status { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 24px; align-items: center; padding: 20px 24px; background: #f0ebe2; border-left: 3px solid var(--site-accent); }
+.lab-status-label { font-size: 0.85rem; font-weight: bold; color: var(--site-accent); }
+.lab-status p { margin: 0; font-size: 0.95rem; }
+.lab-sections { display: flex; flex-wrap: wrap; gap: 14px 28px; margin-top: 28px; font-size: 0.9rem; line-height: 1.6; }
+.lab-section { border-top: 1px solid var(--site-line); padding: 40px 0 48px; }
+.lab-section-heading { margin-bottom: 28px; }
+.lab-section-heading > p:not(.eyebrow) { max-width: 730px; margin: 16px 0 0; }
+.lab-section-heading .eyebrow { margin-bottom: 12px; }
+
+.hardware-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.hardware-card { padding: 24px; border: 1px solid var(--site-line); border-radius: 5px; background: #fffdf9; }
+.hardware-card .hardware-category { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px; margin: 0 0 22px; color: var(--site-accent); font-size: 0.75rem; font-weight: bold; }
+.hardware-category span { color: var(--site-muted); font-weight: normal; }
+.hardware-card .hardware-model { margin: 9px 0 18px; font-size: 0.8rem; }
+.hardware-card > p:last-child { margin-bottom: 0; font-size: 0.95rem; }
+
+.lab-topology { margin: 0; padding: 28px; border: 1px solid var(--site-line); border-radius: 5px; background: #f0ebe2; }
+.lab-topology figcaption { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; font-size: 0.85rem; }
+.lab-topology figcaption > span { color: var(--site-muted); }
+.topology-tree { margin: 32px 0 24px; text-align: center; }
+.topology-core { position: relative; width: min(320px, 100%); margin: 0 auto; padding: 22px; background: #293e39; color: #fffdf9; border-radius: 5px; }
+.topology-core::after { content: ""; position: absolute; left: 50%; top: 100%; height: 28px; border-left: 1px solid #a59e92; }
+.topology-kicker { display: block; font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 10px; }
+.topology-core strong, .topology-node strong { display: block; font-size: 1.05rem; margin-bottom: 9px; }
+.topology-core > span:last-child, .topology-node > span:last-of-type { display: block; font-size: 0.8rem; line-height: 1.6; }
+.topology-branches { position: relative; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; padding-top: 56px; }
+.topology-branches::before { content: ""; position: absolute; top: 28px; left: calc((100% - 48px) / 6); right: calc((100% - 48px) / 6); border-top: 1px solid #a59e92; }
+.topology-node { position: relative; align-self: start; padding: 22px 14px; border: 1px solid #cec6b8; background: #fffdf9; border-radius: 5px; }
+.topology-node::before { content: ""; position: absolute; left: 50%; bottom: 100%; height: 28px; border-left: 1px solid #a59e92; }
+.topology-node .topology-kicker { color: var(--site-accent); }
+.topology-services { margin-top: 20px; padding-top: 16px; border-top: 1px dashed #cec6b8; color: var(--site-muted); font-size: 0.8rem; line-height: 1.7; }
+.lab-topology .topology-description { max-width: 780px; margin: 24px 0 0; font-size: 0.9rem; }
+
+.lab-decisions article { display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 20px; padding: 28px 0; border-top: 1px solid var(--site-line); }
+.lab-decisions article:first-child { border: 0; padding-top: 0; }
+.lab-decisions article:last-child { padding-bottom: 0; }
+.decision-number { color: var(--site-accent); font-family: Georgia, serif; font-size: 1.65rem; line-height: 1.2; }
+.lab-decisions article > div { max-width: 760px; }
+.lab-decisions p { margin: 14px 0; }
+.decision-status { display: inline-block; color: var(--site-accent); font-size: 0.8rem; line-height: 1.6; }
+.lab-roadmap { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 40px; margin: 0; padding: 0; list-style: none; counter-reset: stage; }
+.lab-roadmap li { counter-increment: stage; padding-top: 18px; border-top: 1px solid var(--site-line); }
+.lab-roadmap h3 { font-size: 1.2rem; margin-top: 12px; }
+.lab-roadmap h3::before { content: counter(stage, decimal-leading-zero) ". "; color: var(--site-accent); }
+.lab-roadmap p { margin-bottom: 0; font-size: 0.95rem; }
+.roadmap-state { font-size: 0.75rem; color: var(--site-accent); font-weight: bold; }
+
+@media (max-width: 900px) {
+  .hardware-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .topology-branches { gap: 14px; }
+  .topology-branches::before { left: calc((100% - 28px) / 6); right: calc((100% - 28px) / 6); }
+}
+
+@media (max-width: 640px) {
+  .homelab-main { width: calc(100% - 32px); }
+  .lab-intro { padding: 36px 0 32px; }
+  .lab-lede { font-size: 1.05rem; }
+  .lab-status { grid-template-columns: minmax(0, 1fr); gap: 8px; padding: 18px; }
+  .lab-section { padding: 32px 0; }
+  .hardware-grid, .lab-roadmap { grid-template-columns: minmax(0, 1fr); }
+  .hardware-card { padding: 22px; }
+  .lab-topology { padding: 20px 16px; }
+  .topology-branches { grid-template-columns: minmax(0, 1fr); gap: 18px; padding: 28px 0 0 20px; border-left: 1px solid #a59e92; margin: 0 0 0 12px; }
+  .topology-branches::before { display: none; }
+  .topology-core { width: 100%; }
+  .topology-core::after { left: 12px; height: 28px; }
+  .topology-node::before { left: -21px; top: 50%; bottom: auto; width: 20px; height: 0; border-left: 0; border-top: 1px solid #a59e92; }
+  .lab-decisions article { grid-template-columns: 28px minmax(0, 1fr); gap: 12px; }
+  .decision-number { font-size: 1.35rem; }
+}
