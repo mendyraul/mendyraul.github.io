@@ -1,100 +1,105 @@
-let sessionPrivateKeyPrime = null
-
 function getMode() {
-  const modeSelect = document.getElementById("mode-select")
-
-  return modeSelect.options[modeSelect.selectedIndex].value;
+  return document.getElementById("mode-select").value;
 }
-///SHIT THAT WORKS DONT TOUCH!
-
-function getPrivateKey(callback) {
-  const privateKeyInput = document.getElementById("pKey")
-  let privateKeyValue = privateKeyInput.value
-
-  if (!privateKeyValue) {
-    if (sessionPrivateKeyPrime !== null) {
-      callback(sessionPrivateKeyPrime)
-      return
-    }
-
-    randomPrime(callback)
-  }
-  else callback(privateKeyValue)
-}
-///SHIT THAT WORKS DONT TOUCH!
 
 function getEncryptionAlgo() {
-  const encryptionAlgoSelect = document.getElementById("encryption_algorithm")
-
-  return encryptionAlgoSelect.options[encryptionAlgoSelect.selectedIndex].text
+  return document.getElementById("encryption_algorithm").value;
 }
-///SHIT THAT WORKS DONT TOUCH!
+
+function cryptoStatus(message, state = "error", field = null) {
+  const status = document.getElementById("cryptoStatus");
+  status.textContent = message;
+  status.dataset.state = state;
+  document.querySelectorAll('.encryption-main [aria-invalid="true"]').forEach((input) => {
+    input.removeAttribute("aria-invalid");
+  });
+  if (field) {
+    field.setAttribute("aria-invalid", "true");
+    field.focus();
+  }
+}
+
+function getPrivateKey() {
+  const field = document.getElementById("pKey");
+  if (!field.value.trim()) {
+    cryptoStatus("Enter a key before encrypting or decrypting.", "error", field);
+    return null;
+  }
+  // Preserve spaces in a supplied key so earlier ciphertexts still decrypt.
+  return field.value;
+}
+
+function encryptionReady() {
+  if (typeof CryptoJS === "undefined") {
+    cryptoStatus("The encryption library didn’t load. Refresh the page and try again.");
+    return false;
+  }
+  return true;
+}
 
 function encrypt() {
-  const plainTextInput = document.getElementById("input");
-  const plainText = plainTextInput.value;
-
-  if (!plainText) {
-    alert('Please enter some text to encrypt');
-
+  const key = getPrivateKey();
+  if (key === null || !encryptionReady()) return;
+  const input = document.getElementById("input");
+  if (!input.value) {
+    cryptoStatus("Enter some text to encrypt.", "error", input);
     return;
   }
-  
-  getPrivateKey((privateKeyValue) => {
-    if (privateKeyValue.trim() === "") {
-      alert("Please enter the private key")
-    }
-  
-    const ciphertext = CryptoJS[getEncryptionAlgo()].encrypt(plainText, privateKeyValue, {
+  try {
+    const ciphertext = CryptoJS[getEncryptionAlgo()].encrypt(input.value, key, {
       mode: CryptoJS.mode[getMode()]
     }).toString();
-  
-    const output = document.getElementById("decrypt-input")
-  
-    output.value = ciphertext;
-  })
+    document.getElementById("decrypt-input").value = ciphertext;
+    cryptoStatus("Encrypted text is ready. Keep your key to decrypt it later.", "success");
+  } catch (_) {
+    cryptoStatus("Couldn’t encrypt this text. Check the settings and try again.");
+  }
 }
-///SHIT THAT WORKS DONT TOUCH!
 
 function decrypt() {
-  const cipherTextInput = document.getElementById("decrypt-input");
-  const cipherText = cipherTextInput.value;
-
-  if (!cipherText) {
-    alert('Please enter some text to decrypt');
-
+  const key = getPrivateKey();
+  if (key === null || !encryptionReady()) return;
+  const input = document.getElementById("decrypt-input");
+  const ciphertext = input.value.replace(/\s/g, "");
+  if (!ciphertext) {
+    cryptoStatus("Enter some encrypted text to decrypt.", "error", input);
     return;
   }
-
-  getPrivateKey((privateKeyValue) => {
-    if (privateKeyValue.trim() === "") {
-      alert("Please enter the private key")
+  try {
+    // The existing app produces salted OpenSSL-format base64 through CryptoJS.
+    if (!/^[A-Za-z0-9+/]+={0,2}$/.test(ciphertext) || ciphertext.length % 4 !== 0) {
+      throw new Error("Invalid ciphertext");
     }
-  
-    const plainText = CryptoJS[getEncryptionAlgo()].decrypt(cipherText, privateKeyValue, {
-      mode: CryptoJS.mode[getMode()]
-    }).toString(CryptoJS.enc.Utf8);
-  
-    if (!plainText) {
-      alert("Could not decrypt. Maybe decryption algorithm or mode of operation is wrong?")
-  
-      return
+    const algorithm = getEncryptionAlgo();
+    const blockBytes = CryptoJS.algo[algorithm].blockSize * 4;
+    const parsed = CryptoJS.format.OpenSSL.parse(ciphertext);
+    if (!parsed.salt || parsed.salt.sigBytes !== 8 || parsed.ciphertext.sigBytes === 0 ||
+        parsed.ciphertext.sigBytes % blockBytes !== 0) {
+      throw new Error("Invalid ciphertext");
     }
-  
-    const output = document.getElementById("input")
-  
-    output.value = plainText;
-  })
+    const bytes = CryptoJS[algorithm].decrypt(parsed, key, {
+      mode: CryptoJS.mode[getMode()],
+      padding: {
+        unpad(data) {
+          // CryptoJS otherwise removes unchecked padding, sometimes hiding a wrong key.
+          const byteAt = (index) => (data.words[index >>> 2] >>> (24 - (index % 4) * 8)) & 255;
+          const count = byteAt(data.sigBytes - 1);
+          if (count < 1 || count > blockBytes || count > data.sigBytes) throw new Error("Invalid padding");
+          for (let i = data.sigBytes - count; i < data.sigBytes; i += 1) {
+            if (byteAt(i) !== count) throw new Error("Invalid padding");
+          }
+          CryptoJS.pad.Pkcs7.unpad(data);
+        }
+      }
+    });
+    const plaintext = bytes.toString(CryptoJS.enc.Utf8);
+    if (!plaintext) throw new Error("No plaintext");
+    document.getElementById("input").value = plaintext;
+    cryptoStatus("Decrypted text is ready.", "success");
+  } catch (_) {
+    cryptoStatus("Couldn’t decrypt this message. Check the key, algorithm, mode, and encrypted text.", "error", input);
+  }
 }
-///SHIT THAT WORKS DONT TOUCH!
-//This is used to generate a random prime number for the Public key encryptions.
-function randomPrime(callback) {
-  const bits = 256;
 
-  forge.prime.generateProbablePrime(bits, function(err, num) {
-    const numStr = num.toString(10)
-
-    sessionPrivateKeyPrime = numStr
-    callback(numStr)
-  });
-}
+document.getElementById("encryptBtn").addEventListener("click", encrypt);
+document.getElementById("decryptBtn").addEventListener("click", decrypt);

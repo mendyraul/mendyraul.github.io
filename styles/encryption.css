@@ -1,0 +1,127 @@
+.encryption-main,
+.encryption-main * {
+  box-sizing: border-box;
+}
+
+.encryption-main {
+  clear: both;
+  width: min(1040px, calc(100% - 48px));
+  margin: 0 auto;
+  padding: 48px 0 64px;
+}
+
+.encryption-heading { margin-bottom: 30px; }
+.encryption-heading h1 {
+  margin: 0 0 16px;
+  font: normal clamp(2.5rem, 6vw, 3.5rem)/1.1 Georgia, serif;
+  letter-spacing: -0.03em;
+}
+.encryption-heading > p:last-child {
+  margin: 0;
+  max-width: 42rem;
+  color: var(--site-muted);
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.encryption-settings {
+  display: grid;
+  grid-template-columns: minmax(100px, 1fr) minmax(100px, 1fr) minmax(0, 2fr);
+  gap: 18px 24px;
+  border-block: 1px solid var(--site-line);
+  padding: 24px 0;
+}
+.encryption-settings > div { min-width: 0; }
+.encryption-settings label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+.encryption-settings label span { color: var(--site-muted); font-weight: normal; }
+.encryption-settings input,
+.encryption-settings select,
+.encryption-panel textarea {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  border: 1px solid #a9a39a;
+  border-radius: 5px;
+  padding: 11px 12px;
+  color: var(--site-ink);
+  background: #fff;
+  font: inherit;
+  line-height: 1.5;
+}
+.encryption-main :is(input, select, textarea):focus-visible {
+  outline: 2px solid #b65a37;
+  outline-offset: 3px;
+}
+.encryption-main [aria-invalid="true"] { border-color: #a22a20; }
+.encryption-help {
+  grid-column: 1 / -1;
+  margin: 0;
+  color: var(--site-muted);
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+.encryption-status {
+  min-height: 1.6em;
+  margin: 14px 0;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+.encryption-status[data-state="error"] { color: #a22a20; }
+.encryption-status[data-state="success"] { color: #315b36; }
+.encryption-workspace {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+.encryption-panel {
+  min-width: 0;
+  padding: 24px;
+  border: 1px solid var(--site-line);
+  border-radius: 8px;
+  background: #fffdf9;
+}
+.encryption-panel h2 { margin: 0; font: normal 1.45rem Georgia, serif; }
+.encryption-panel p {
+  margin: 12px 0 18px;
+  min-height: 3.2em;
+  color: var(--site-muted);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+.encryption-panel textarea {
+  resize: vertical;
+  min-height: 180px;
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: 0.9rem;
+}
+.encryption-panel button {
+  width: auto;
+  height: auto;
+  min-height: 44px;
+  margin: 18px 0 0;
+  padding: 10px 24px;
+  border-radius: 5px;
+  color: #fff;
+  background: var(--site-accent);
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: bold;
+  line-height: 1.5;
+}
+.encryption-panel button:hover { background: #6e2711; }
+
+@media (max-width: 720px) {
+  .encryption-main { width: calc(100% - 32px); padding: 36px 0 40px; }
+  .encryption-settings { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+  .encryption-key { grid-column: 1 / -1; }
+  .encryption-workspace { grid-template-columns: minmax(0, 1fr); }
+  .encryption-panel { padding: 20px; }
+  .encryption-panel p { min-height: 0; }
+  .encryption-panel button { width: 100%; }
+}
