@@ -25,6 +25,16 @@ Licence URI: http://www.os-templates.com/template-terms
         <div data-include="/partials/header.html"></div>
         <main class="widgets-main">
             <h1>Widgets</h1>
+            <section class="widget-section beat-widget" aria-labelledby="beat-title">
+                <h2 id="beat-title">Beat the Deck</h2>
+                <p class="beat-rules">Guess higher or lower on any pile. A wrong guess closes that pile. Finish the deck before all piles close. ACE IS HIGH!</p>
+                <div class="beat-meta">
+                    <span id="beatRemaining">Deck: 52</span>
+                    <button id="beatRestart" type="button">Restart</button>
+                </div>
+                <p class="beat-status" id="beatStatus" aria-live="polite">Choose higher or lower on a pile.</p>
+                <div class="beat-grid" id="beatGrid"></div>
+            </section>
             <section class="widget-section snake-widget" aria-labelledby="snake-title">
                 <h2 id="snake-title">Snake</h2>
                 <p>Collect food and keep growing. Use arrow keys or swipe on the board.</p>
@@ -39,16 +49,6 @@ Licence URI: http://www.os-templates.com/template-terms
                     <p class="snake-status" id="snakeStatus" aria-live="polite">Press Start to play.</p>
                     <canvas class="snake-canvas" id="snakeCanvas" aria-label="Snake game board"></canvas>
                 </div>
-            </section>
-            <section class="widget-section beat-widget" aria-labelledby="beat-title">
-                <h2 id="beat-title">Beat the Deck</h2>
-                <p class="beat-rules">Guess higher or lower on any pile. A wrong guess closes that pile. Finish the deck before all piles close.</p>
-                <div class="beat-meta">
-                    <span id="beatRemaining">Deck: 52</span>
-                    <button id="beatRestart" type="button">Restart</button>
-                </div>
-                <p class="beat-status" id="beatStatus" aria-live="polite">Choose higher or lower on a pile.</p>
-                <div class="beat-grid" id="beatGrid"></div>
             </section>
         </main>
         <div data-include="/partials/footer.html"></div>
