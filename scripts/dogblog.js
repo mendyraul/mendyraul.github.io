@@ -1,106 +1,93 @@
-// Author: Hoang Tran (https://fb.com/99.hoangtran)
-//I had to modify ALOT of the existing code but thank you above for the inspiration
+// Gallery adapted from Hoang Tran (https://fb.com/99.hoangtran).
+const gallery = document.getElementById("rotate");
+const odrag = document.getElementById("drag-container");
+const ospin = document.getElementById("spin-container");
+const photos = Array.from(ospin.querySelectorAll("img, video"));
+const ground = document.getElementById("ground");
+const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+const imgWidth = 145;
+const imgHeight = 200;
+let radius = 240;
+let tX = 0;
+let tY = 10;
+let pointer = null;
+let inertia = null;
 
-// You can change global variables here:
-var radius = 240; // how big of the radius
-var autoRotate = true; // auto rotate or not
-var rotateSpeed = -60; // unit: seconds/360 degrees
-var imgWidth = 145; // width of images (unit: px)
-var imgHeight = 200; // height of images (unit: px)
+ospin.style.width = `${imgWidth}px`;
+ospin.style.height = `${imgHeight}px`;
+photos.forEach((photo) => { photo.draggable = false; });
 
+function init() {
+  radius = Math.min(240, Math.max(80, (gallery.clientWidth - imgWidth - 32) / 2));
+  ground.style.width = `${radius * 3}px`;
+  ground.style.height = `${radius * 3}px`;
+  photos.forEach((photo, index) => {
+    photo.style.transform = `rotateY(${index * 360 / photos.length}deg) translateZ(${radius}px)`;
+  });
+}
 
+function applyTransform() {
+  tY = Math.max(0, Math.min(180, tY));
+  odrag.style.transform = `rotateX(${-tY}deg) rotateY(${tX}deg)`;
+}
 
-// ===================== start =======================
-// animation start after 1000 milliseconds
-setTimeout(init, 1000);
+function playSpin(playing) {
+  ospin.style.animationPlayState = playing && !reducedMotion.matches ? "running" : "paused";
+}
 
-var odrag = document.getElementById('drag-container');
-var ospin = document.getElementById('spin-container');
-var aImg = ospin.getElementsByTagName('img');
-var aVid = ospin.getElementsByTagName('video');
-var aEle = [...aImg, ...aVid]; // combine 2 arrays
+function stopInertia() {
+  if (inertia !== null) cancelAnimationFrame(inertia);
+  inertia = null;
+}
 
-// Size of images
-ospin.style.width = imgWidth + "px";
-ospin.style.height = imgHeight + "px";
-
-// Size of ground - depend on radius
-var ground = document.getElementById('ground');
-ground.style.width = radius * 3 + "px";
-ground.style.height = radius * 3 + "px";
-
-function init(delayTime) {
-  for (var i = 0; i < aEle.length; i++) {
-    aEle[i].style.transform = "rotateY(" + (i * (360 / aEle.length)) + "deg) translateZ(" + radius + "px)";
-    aEle[i].style.transition = "transform 1s";
-    aEle[i].style.transitionDelay = delayTime || (aEle.length - i) / 4 + "s";
+function coast(dx, dy) {
+  if (reducedMotion.matches || (Math.abs(dx) < 0.5 && Math.abs(dy) < 0.5)) {
+    inertia = null;
+    playSpin(true);
+    return;
   }
+  tX += dx * 0.1;
+  tY += dy * 0.1;
+  applyTransform();
+  inertia = requestAnimationFrame(() => coast(dx * 0.95, dy * 0.95));
 }
 
-function applyTranform(obj) {
-  // Constrain the angle of camera (between 0 and 180)
-  if (tY > 180) tY = 180;
-  if (tY < 0) tY = 0;
-
-  // Apply the angle
-  obj.style.transform = "rotateX(" + (-tY) + "deg) rotateY(" + (tX) + "deg)";
-}
-
-function playSpin(yes) {
-  ospin.style.animationPlayState = (yes ? 'running' : 'paused');
-}
-
-var sX, sY, nX, nY, desX = 0,
-  desY = 0,
-  tX = 0,
-  tY = 10;
-
-// auto spin
-if (autoRotate) {
-  var animationName = (rotateSpeed > 0 ? 'spin' : 'spinRevert');
-  ospin.style.animation = `${animationName} ${Math.abs(rotateSpeed)}s infinite linear`;
-}
-
-
-// setup events
-document.onpointerdown = function (e) {
-  clearInterval(odrag.timer);
-  var sX = e.clientX,
-    sY = e.clientY;
-
-  document.onpointermove = function (e) {
-    var nX = e.clientX,
-      nY = e.clientY;
-    desX = nX - sX;
-    desY = nY - sY;
-    tX += desX * 0.1;
-    tY += desY * 0.1;
-    applyTranform(odrag);
-    sX = nX;
-    sY = nY;
-  };
-
-  document.onpointerup = function (e) {
-    odrag.timer = setInterval(function () {
-      desX *= 0.95;
-      desY *= 0.95;
-      tX += desX * 0.1;
-      tY += desY * 0.1;
-      applyTranform(odrag);
-      playSpin(false);
-      if (Math.abs(desX) < 0.5 && Math.abs(desY) < 0.5) {
-        clearInterval(odrag.timer);
-        playSpin(true);
-      }
-    }, 17);
-    document.onpointermove = document.onpointerup = null;
-  };
-
-  return false;
-};
-
-document.addEventListener('wheel', function (e) {
-  var d = e.deltaY || e.detail || e.wheelDelta;
-  radius += d / 20;
-  init(1);
+gallery.addEventListener("pointerdown", (event) => {
+  if (!event.isPrimary || event.button !== 0) return;
+  stopInertia();
+  pointer = { id: event.pointerId, x: event.clientX, y: event.clientY, dx: 0, dy: 0 };
+  gallery.setPointerCapture(event.pointerId);
+  playSpin(false);
 });
+
+gallery.addEventListener("pointermove", (event) => {
+  if (!pointer || pointer.id !== event.pointerId) return;
+  pointer.dx = event.clientX - pointer.x;
+  // On a phone, vertical gestures belong to page scrolling.
+  pointer.dy = event.pointerType === "touch" ? 0 : event.clientY - pointer.y;
+  tX += pointer.dx * 0.1;
+  tY += pointer.dy * 0.1;
+  pointer.x = event.clientX;
+  pointer.y = event.clientY;
+  applyTransform();
+});
+
+function endDrag(event) {
+  if (!pointer || pointer.id !== event.pointerId) return;
+  const { dx, dy } = pointer;
+  pointer = null;
+  if (gallery.hasPointerCapture(event.pointerId)) gallery.releasePointerCapture(event.pointerId);
+  if (event.type === "pointercancel") playSpin(true);
+  else coast(dx, dy);
+}
+
+gallery.addEventListener("pointerup", endDrag);
+gallery.addEventListener("pointercancel", endDrag);
+window.addEventListener("resize", init);
+reducedMotion.addEventListener("change", () => {
+  stopInertia();
+  playSpin(!pointer);
+});
+ospin.style.animation = "spinRevert 60s infinite linear";
+init();
+playSpin(true);

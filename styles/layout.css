@@ -62,14 +62,14 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, 
 /* ----------------------------------------------Social Bar------------------------------------- */
 
 #socialise{display:none; padding:20px 0; justify-content: center; text-align: center;}
-#socialise ul{display:inline; margin-left: 20%; padding:0; list-style:none; font-size:20px; font-family:Georgia, "Times New Roman", Times, serif;}
-#socialise li{display:inline-block; margin:0 103px 0 0; text-align:center;}
+#socialise ul{display:flex; flex-wrap:wrap; justify-content:center; gap:24px; box-sizing:border-box; width:100%; max-width:1040px; margin:0 auto; padding:0 24px; list-style:none; font-size:20px; font-family:Georgia, "Times New Roman", Times, serif;}
+#socialise li{flex:0 0 144px; max-width:100%; margin:0; text-align:center;}
 #socialise li span{display:block; margin:8px 0 0 0;}
 #socialise li.last{margin-right:0;}
-#socialise a{color:#333333; background-color:#222222;}
-#socialise a:hover{color:#CCCCCC; background-color:#222222;}
-#socialise img{object-fit: contain; height: 100px; width: 70px; align-content: center;margin: auto;}
-#socialise div.imgholder{text-align: center; display:grid; width:auto; height: auto; padding: 5px; border:0px solid #000000; justify-content:center; object-fit:cover;}
+#socialise a{display:block; color:#d8d3cb; background-color:#222222;}
+#socialise a:hover{color:#60E1FD; background-color:#222222;}
+#socialise img{object-fit:contain; height:80px; width:80px; margin:0 auto;}
+#socialise div.imgholder{display:block; width:100%; margin:0; padding:0; text-align:center;}
 
 /* ----------------------------------------------Header------------------------------------- */
 
@@ -79,7 +79,7 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, 
 #header h1{margin:0 0 7px 0; font-size:56px; font-family:Georgia, "Times New Roman", Times, serif;}
 #header h1 a{color:#F3F3F3; background-color:#222222;}
 #header p.toggler{display:inline;}
-#header p.toggler a{align-self:center; display:block; width:100%; padding:5px 0; text-align:center; text-transform:uppercase; color:#666666; background-color:#333333;}
+#header p.toggler a{align-self:center; display:block; width:100%; padding:5px 0; text-align:center; text-transform:uppercase; color:#d8d3cb; background-color:#333333;}
 /* ----------------------------------------------Homepage Intro------------------------------------- */
 
 #intro{padding:0 0 0 0; text-align: center;}

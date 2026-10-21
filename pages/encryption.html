@@ -1,167 +1,64 @@
 <!DOCTYPE html>
-<!--
-Template Name: OnlineFolio
-Author: <a href="http://www.os-templates.com/">OS Templates</a>
-Author URI: http://www.os-templates.com/
-Licence: Free to use under our free template licence terms
-Licence URI: http://www.os-templates.com/template-terms
--->
 <html lang="en">
-    <head>
-        <title>Encryption | Raul Mendy</title>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes" />
-        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-        <!-- Topicon-->
-        <link rel="icon" type="image/jpeg" href="/assests/img/IMG_9188.jpeg"/>
-        <!-- Core theme CSS (includes Bootstrap)-->
-        <link rel="stylesheet" href="/styles/layout.css" type="text/css"/>
-        <!-- Bootstrap core JS-->
-        <script type="text/javascript" src="/scripts/jquery.min.js"></script>
-        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-        <!-- added js -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/big-integer/1.6.51/BigInteger.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/forge/1.3.1/forge.min.js"></script>
-        <script src="/scripts/crypto.js"></script>
-    </head>
-    <style>
-        * {
-            box-sizing: border-box;
-        }
-    
-        html, body {
-            height: 100%;
-        }
-    
-        body {
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-position: center;
-        }
-    
-        section.text-about {
-            padding: 0 40px;
-            color: #fff;
-        }
-    
-        section.text-about p {
-            font-size: 18px;
-        }
-        .text-container {
-            max-width: 1000px;
-            position: inline-grid;
-            margin:  auto;
-            margin-top: 10px;
-            padding: 10px;
-            background-color: rgb(0, 0, 0);
-            border-radius: 10px;
-            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
-            text-align: center; /* Add this line to center the content */
-        }
-        .button {
-            max-width: 400px;
-            margin-left: 2%;
-            margin-right: 2%;
-        }
-        .text-container h1
-        {
-          font-size: 40px;
-          text-align: center; /* center the heading */
-        }
-    
-        .text-container p
-        {
-          font-size: 20px;
-          text-align: center; /* center the heading */
-        }
-        
-        .text-container:last-of-type 
-        {
-          margin-bottom: 100px;
-        }
-        .text-container textarea {
-            width: 80%;
-        }
-        .navbar-brand
-        {
-          font-size: 24px;
-        }
-    
-        .navbar-nav li a
-        {
-         font-size: 24px; /* change font size to 16px */
-        }
-        #input-and-button {
-            position: inline-flex;
-        }
-    </style>
-    
-    <body id="top">
-        <div data-include="/partials/header.html"></div>
-        <!-- #####################################    ############################################## -->
-        <div class="wrapper col3">
-            <section class="text-container">
-                <div style="position: inline-flex;">
-                    <h2 id="title">Encryption</h2>
-                    <p style="color: rgb(255, 255, 255);"> Welcome! Enter any string in the respective box along with a private key and enjoy some coded conversations!</p>
-                
-                    <div style="z-index: 100; position: flex; top: 10%; right: 10px; padding-right: 10px; transform: translateY(-10%); display: inline-block; background-color: #F9F9F9; padding: 10px; border: 1px solid #E8E8E8; border-radius: 5px;">
-                        <label for="encryption_algorithm" class="required" style="color: rgb(0, 0, 0); display: block; margin-bottom: 5px;">Supported Encryptions:</label>
-                        <select id="encryption_algorithm" name="encryption[algorithm]">
-                            <option value="DES">DES</option>
-                            <option value="AES">AES</option>
-                        </select>
-                    </div>
-                    <!--Modes Of Operations box-->
-                    <div class="container">
-                        <label for="MODE" style="color: rgb(255, 255, 255);">Select a Mode of Operation:</label>
-                        <select class="form-control" id="mode-select">
-                            <option>ECB</option>
-                            <option>CBC</option>
-                            <option>CFB</option>
-                        </select>
-                    </div>
-                    <!-- CODE FOR PKEY Box -->
-                    <div class="container">
-                        <div class="form-group">
-                            <label for="input" style="color:  rgb(251, 250, 250);">Enter a Key</label>
-                            <input type="key" class="form-control" id="pKey" placeholder="Enter Private key">
-                        </div>
-                    </div>
-                </div>
-                <br class="clear" />
-                <!--Enc and Dec containers-->
-                <div class="container">
-                    <div class="input-and-button">
-                        <button type="button" class="" onclick="encrypt()">Encrypt string →</button>
-                        <h2 style="color:  rgb(250, 247, 247);">Enter a string to be encrypted:</h2>
-                        
-                        <textarea id="input" rows="10"
-                            placeholder="Enter plain text to hash" ng-model="textToEncrypt" name="textToEncrypt"></textarea>
-                        
-                        <button type="button" class="btn btn-secondary btn-lg" onclick="decrypt()">← Decrypt string </button>
-                        <h2 style="color:  rgb(250, 248, 248);">Enter a string to be decrypted:</h2>
-                        
-                        <textarea id="decrypt-input"  rows="10"
-                            placeholder="Enter text to decrypt" ng-model="textToDecrypt" name="textToDecrypt"></textarea>
-                        
-                        
-                    </div>
-                </div>
-            </section>
-
-            
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Try encrypting and decrypting text with DES or AES and different modes of operation." />
+    <title>Encryption | Raul Mendy</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="/assests/img/favicon-32.png" />
+    <link rel="stylesheet" href="/styles/layout.css" />
+    <link rel="stylesheet" href="/styles/encryption.css" />
+    <script src="/scripts/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js" defer></script>
+    <script src="/scripts/crypto.js" defer></script>
+  </head>
+  <body id="top" class="encryption-page">
+    <div data-include="/partials/header.html"></div>
+    <main class="encryption-main">
+      <header class="encryption-heading">
+        <p class="eyebrow">A browser experiment</p>
+        <h1>Encryption</h1>
+        <p>Encrypt a message, then try decrypting it with the same key, algorithm, and mode.</p>
+      </header>
+      <section class="encryption-settings" aria-label="Encryption settings">
+        <div>
+          <label for="encryption_algorithm">Algorithm</label>
+          <select id="encryption_algorithm">
+            <option value="DES">DES</option>
+            <option value="AES">AES</option>
+          </select>
         </div>
-        <!-- ####################################################################################################### -->
-        <div class="wrapper col4" id="Projects">
-            <div class="overview">
-                
-
-                <br class="clear" />
-            </div>
+        <div>
+          <label for="mode-select">Mode</label>
+          <select id="mode-select">
+            <option value="ECB">ECB</option>
+            <option value="CBC">CBC</option>
+            <option value="CFB">CFB</option>
+          </select>
         </div>
-        <div data-include="/partials/footer.html"></div>
-        <script type="text/javascript" src="/scripts/include.js"></script>
-    </body>
+        <div class="encryption-key">
+          <label for="pKey">Key <span>(passphrase)</span></label>
+          <input id="pKey" type="text" placeholder="Enter your key" autocomplete="off" spellcheck="false" required aria-describedby="key-help" />
+        </div>
+        <p id="key-help" class="encryption-help">Choose a key and keep it if you want to decrypt the message later. Text and keys stay in this tab and aren’t saved.</p>
+      </section>
+      <p id="cryptoStatus" class="encryption-status" role="status" aria-live="polite" aria-atomic="true"></p>
+      <div class="encryption-workspace">
+        <section class="encryption-panel" aria-labelledby="plain-title">
+          <h2 id="plain-title"><label for="input">Text to encrypt</label></h2>
+          <p>Write a message or view the decrypted result here.</p>
+          <textarea id="input" rows="9" placeholder="Enter plain text" spellcheck="false"></textarea>
+          <button id="encryptBtn" type="button">Encrypt →</button>
+        </section>
+        <section class="encryption-panel" aria-labelledby="cipher-title">
+          <h2 id="cipher-title"><label for="decrypt-input">Encrypted text</label></h2>
+          <p>Paste a message to decrypt, or encrypt one here first.</p>
+          <textarea id="decrypt-input" rows="9" placeholder="Enter encrypted text" spellcheck="false"></textarea>
+          <button id="decryptBtn" type="button">← Decrypt</button>
+        </section>
+      </div>
+    </main>
+    <div data-include="/partials/footer.html"></div>
+    <script src="/scripts/include.js"></script>
+  </body>
 </html>

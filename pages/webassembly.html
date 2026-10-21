@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="My terminal games, brought to the browser with WebAssembly, and a Reddit version of Blackjack in development." />
+    <title>WebAssembly | Raul Mendy</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="/assests/img/favicon-32.png" />
+    <link rel="stylesheet" href="/styles/layout.css" />
+    <link rel="stylesheet" href="/styles/webassembly.css" />
+    <script src="/scripts/jquery.min.js"></script>
+  </head>
+  <body id="top">
+    <div data-include="/partials/header.html"></div>
+    <main class="wasm-main">
+      <header class="wasm-intro">
+        <p class="eyebrow">From the terminal to the browser</p>
+        <h1>WebAssembly</h1>
+        <p class="wasm-lede">If you saw Blackjack and dungeon-cli on my Projects page, those started as terminal games. I wanted to make them easier to try, so I brought them to the browser using WebAssembly.</p>
+        <p>WebAssembly lets the browser run compiled code. That means I can reuse the game logic instead of rewriting it in JavaScript, and you can play without installing anything.</p>
+      </header>
+
+      <section class="wasm-games" aria-label="Games you can play">
+        <article class="wasm-game" id="blackjack" aria-labelledby="blackjack-title">
+          <p class="eyebrow">Cards</p>
+          <h2 id="blackjack-title">Blackjack</h2>
+          <p>Originally a command-line game written in C. The browser version brings that game logic to a card table you can play here.</p>
+          <div class="wasm-links">
+            <a class="wasm-play" href="https://dungeon-blackjack-wasm.vercel.app/blackjack" target="_blank" rel="noopener noreferrer">Play Blackjack <span aria-hidden="true">↗</span><span class="wasm-sr-only"> (opens in a new tab)</span></a>
+            <a href="https://github.com/mendyraul/blackjack">CLI source on GitHub</a>
+          </div>
+        </article>
+        <article class="wasm-game" id="dungeon" aria-labelledby="dungeon-title">
+          <p class="eyebrow">Dungeon crawler</p>
+          <h2 id="dungeon-title">dungeon-cli</h2>
+          <p>A game I built to play in the terminal. This version uses WebAssembly to run it in the browser, so you can try it without setting up the project locally.</p>
+          <div class="wasm-links">
+            <a class="wasm-play" href="https://dungeon-blackjack-wasm.vercel.app/dungeon" target="_blank" rel="noopener noreferrer">Play dungeon-cli <span aria-hidden="true">↗</span><span class="wasm-sr-only"> (opens in a new tab)</span></a>
+            <a href="https://github.com/mendyraul/dungeon-cli">CLI source on GitHub</a>
+          </div>
+        </article>
+      </section>
+
+      <section class="wasm-reddit" aria-labelledby="reddit-title">
+        <p class="eyebrow">In development</p>
+        <h2 id="reddit-title">Bringing Blackjack to Reddit</h2>
+        <p>Reddit&rsquo;s developer program gave me another reason to revisit Blackjack. I&rsquo;m building a version with Devvit that uses the C game logic through WebAssembly, so people can play inside Reddit.</p>
+        <p>That version is still in development. For now, the links above take you to the standalone browser games.</p>
+      </section>
+    </main>
+    <div data-include="/partials/footer.html"></div>
+    <script src="/scripts/include.js"></script>
+  </body>
+</html>

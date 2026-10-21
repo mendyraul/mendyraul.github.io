@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const requests = includeTargets.map((target) => {
     const url = target.getAttribute("data-include");
     if (!url) return Promise.resolve();
-    return fetch(url)
+    return fetch(url, { cache: "no-cache" })
       .then((response) => {
         if (!response.ok) {
           throw new Error(`Include failed: ${url}`);
