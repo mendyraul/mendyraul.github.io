@@ -310,7 +310,7 @@
     },
     {
       "id": "talos-cp-01",
-      "label": "Mac mini 01",
+      "label": "Talos node 01",
       "role": "Talos control plane",
       "group": "compute",
       "zone": "TALOS",
@@ -318,7 +318,7 @@
     },
     {
       "id": "talos-wk-01",
-      "label": "Mac mini 02",
+      "label": "Talos node 02",
       "role": "Talos worker",
       "group": "compute",
       "zone": "TALOS",
