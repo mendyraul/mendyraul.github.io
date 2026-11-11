@@ -516,7 +516,7 @@
     },
     {
       "id": "loki-01",
-      "label": "Loki or Graylog",
+      "label": "Loki and Graylog",
       "purpose": "Log aggregation and syslog target",
       "host": "pve-02",
       "zone": "SERVERS"
