@@ -26,48 +26,143 @@
 .lab-section-heading > p:not(.eyebrow) { max-width: 730px; margin: 16px 0 0; }
 .lab-section-heading .eyebrow { margin-bottom: 12px; }
 
-.hardware-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
-.hardware-card { padding: 24px; border: 1px solid var(--site-line); border-radius: 5px; background: #fffdf9; }
-.hardware-card .hardware-category { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px; margin: 0 0 22px; color: var(--site-accent); font-size: 0.75rem; font-weight: bold; }
-.hardware-category span { color: var(--site-muted); font-weight: normal; }
-.hardware-card .hardware-model { margin: 9px 0 18px; font-size: 0.8rem; }
-.hardware-card > p:last-child { margin-bottom: 0; font-size: 0.95rem; }
+/* Network topology, drawn by scripts/homelab-map.js from data/homelab.json */
+.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.homelab-main .map-source { margin: 16px 0 0; font-size: 0.85rem; }
 
-.lab-topology { margin: 0; padding: 28px; border: 1px solid var(--site-line); border-radius: 5px; background: #f0ebe2; }
-.lab-topology figcaption { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; font-size: 0.85rem; }
-.lab-topology figcaption > span { color: var(--site-muted); }
-.topology-tree { margin: 32px 0 24px; text-align: center; }
-.topology-core { position: relative; width: min(320px, 100%); margin: 0 auto; padding: 22px; background: #293e39; color: #fffdf9; border-radius: 5px; }
-.topology-core::after { content: ""; position: absolute; left: 50%; top: 100%; height: 28px; border-left: 1px solid #a59e92; }
-.topology-kicker { display: block; font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 10px; }
-.topology-core strong, .topology-node strong { display: block; font-size: 1.05rem; margin-bottom: 9px; }
-.topology-core > span:last-child, .topology-node > span:last-of-type { display: block; font-size: 0.8rem; line-height: 1.6; }
-.topology-branches { position: relative; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; padding-top: 56px; }
-.topology-branches::before { content: ""; position: absolute; top: 28px; left: calc((100% - 48px) / 6); right: calc((100% - 48px) / 6); border-top: 1px solid #a59e92; }
-.topology-node { position: relative; align-self: start; padding: 22px 14px; border: 1px solid #cec6b8; background: #fffdf9; border-radius: 5px; }
-.topology-node::before { content: ""; position: absolute; left: 50%; bottom: 100%; height: 28px; border-left: 1px solid #a59e92; }
-.topology-node .topology-kicker { color: var(--site-accent); }
-.topology-services { margin-top: 20px; padding-top: 16px; border-top: 1px dashed #cec6b8; color: var(--site-muted); font-size: 0.8rem; line-height: 1.7; }
-.lab-topology .topology-description { max-width: 780px; margin: 24px 0 0; font-size: 0.9rem; }
+.net {
+  --ink: #ece7dd; --dim: #9ba7a2; --line: rgba(236, 231, 221, 0.28);
+  --infrastructure: #6cc4b0; --people: #e3c07c; --household: #ef9a5b; --contained: #f0806f;
+  --live: #5fd393;
+  position: relative;
+  width: min(1240px, calc(100vw - 48px));
+  margin-left: calc(50% - min(620px, 50vw - 24px));
+  padding: 26px 30px 30px 50px;
+  border-radius: 14px;
+  background:
+    radial-gradient(circle at 50% 0, rgba(108, 196, 176, 0.14), transparent 55%),
+    radial-gradient(rgba(236, 231, 221, 0.07) 1px, transparent 1.3px) 0 0 / 22px 22px,
+    #16201e;
+  color: var(--ink);
+  font-size: 0.85rem;
+  box-shadow: 0 30px 60px -30px rgba(22, 32, 30, 0.55);
+}
+.net-wires { position: absolute; inset: 0; pointer-events: none; overflow: visible; }
+.net > :not(.net-wires) { position: relative; }
 
-.lab-decisions article { display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 20px; padding: 28px 0; border-top: 1px solid var(--site-line); }
-.lab-decisions article:first-child { border: 0; padding-top: 0; }
-.lab-decisions article:last-child { padding-bottom: 0; }
-.decision-number { color: var(--site-accent); font-family: Georgia, serif; font-size: 1.65rem; line-height: 1.2; }
-.lab-decisions article > div { max-width: 760px; }
-.lab-decisions p { margin: 14px 0; }
-.decision-status { display: inline-block; color: var(--site-accent); font-size: 0.8rem; line-height: 1.6; }
-.lab-roadmap { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 40px; margin: 0; padding: 0; list-style: none; counter-reset: stage; }
-.lab-roadmap li { counter-increment: stage; padding-top: 18px; border-top: 1px solid var(--site-line); }
-.lab-roadmap h3 { font-size: 1.2rem; margin-top: 12px; }
-.lab-roadmap h3::before { content: counter(stage, decimal-leading-zero) ". "; color: var(--site-accent); }
-.lab-roadmap p { margin-bottom: 0; font-size: 0.95rem; }
-.roadmap-state { font-size: 0.75rem; color: var(--site-accent); font-weight: bold; }
 
-@media (max-width: 900px) {
-  .hardware-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .topology-branches { gap: 14px; }
-  .topology-branches::before { left: calc((100% - 28px) / 6); right: calc((100% - 28px) / 6); }
+
+.net-icon { flex: none; display: inline-grid; place-items: center; width: 30px; height: 30px; border-radius: 8px; border: 1px solid var(--line); background: rgba(236, 231, 221, 0.04); color: var(--ink); }
+.net-icon svg { width: 17px; height: 17px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+
+.net-top { display: flex; flex-direction: column; align-items: center; gap: 30px; margin: 4px 0 42px; }
+.net-core { display: flex; align-items: center; gap: 12px; padding: 10px 16px 10px 10px; border-radius: 12px; border: 1px solid var(--line); background: #1d2a27; }
+.net-core strong { display: block; font-size: 0.95rem; }
+.net-core small { display: block; color: var(--dim); font-size: 0.72rem; }
+.net-router { padding: 14px 22px 14px 14px; border-color: rgba(108, 196, 176, 0.6); background: linear-gradient(180deg, #24433c, #1b302c); box-shadow: 0 0 0 6px rgba(108, 196, 176, 0.08), 0 0 40px rgba(108, 196, 176, 0.2); }
+.net-router .net-icon { width: 38px; height: 38px; border-color: rgba(108, 196, 176, 0.7); color: var(--infrastructure); }
+.net-router strong { font-size: 1.1rem; font-family: Georgia, serif; font-weight: normal; }
+
+.net-groups { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px 22px; }
+.net-group { grid-column: span 4; }
+.net-group-people, .net-group-household { grid-column: span 2; }
+.net-group-label { margin: 0 0 28px; color: var(--dim); font-size: 0.66rem; font-weight: bold; letter-spacing: 0.14em; text-transform: uppercase; }
+.net-zones { display: grid; grid-template-columns: repeat(var(--cols, 4), minmax(0, 1fr)); gap: 34px 16px; align-items: start; margin-bottom: 18px; }
+.net-group-infrastructure .net-zones { --cols: 12; }
+.net-group-infrastructure .nz[data-zone="MGMT"] { grid-column: span 3; }
+.net-group-infrastructure .nz-wide { grid-column: span 6; }
+.nz-stack { grid-column: span 3; display: grid; gap: 22px; align-content: start; }
+.nz-wide .nz-body { columns: 2; column-gap: 22px; }
+.nz-wide .nh { break-inside: avoid; }
+.nz-wide .nh:first-child, .nz-wide .nh { border-top: 0; border-bottom: 1px dashed rgba(236, 231, 221, 0.1); }
+.net-group-people .net-zones { --cols: 2; }
+.net-group-household .net-zones { --cols: 1; }
+.nz-wide { grid-column: span 2; }
+
+/* Zone cards */
+.nz { --zc: var(--infrastructure); position: relative; border-radius: 12px; border: 1px solid color-mix(in srgb, var(--zc) 45%, transparent); background: linear-gradient(180deg, color-mix(in srgb, var(--zc) 9%, #16201e), #18231f 60%); transition: opacity 0.2s, box-shadow 0.2s, border-color 0.2s; }
+.nz-people { --zc: var(--people); }
+.nz-household { --zc: var(--household); }
+.nz-contained { --zc: var(--contained); }
+.nz-head { display: flex; align-items: center; gap: 10px; width: 100%; padding: 12px 14px; border: 0; border-bottom: 1px solid color-mix(in srgb, var(--zc) 25%, transparent); background: none; color: var(--ink); font: inherit; text-align: left; cursor: pointer; }
+.nz-head:hover .nz-name { text-decoration: underline; text-underline-offset: 4px; text-decoration-color: var(--zc); }
+.nz-head:focus-visible { outline: 2px solid var(--zc); outline-offset: 2px; border-radius: 12px; }
+.nz-vlan { flex: none; min-width: 30px; padding: 3px 7px; border-radius: 6px; background: color-mix(in srgb, var(--zc, var(--infrastructure)) 18%, transparent); color: var(--zc, var(--infrastructure)); font-family: ui-monospace, Menlo, monospace; font-size: 0.75rem; font-weight: bold; text-align: center; }
+.nz-name { font-family: Georgia, serif; font-size: 1.05rem; line-height: 1.25; }
+.homelab-main .net .nz-rule { display: none; margin: 0; padding: 6px 14px; background: color-mix(in srgb, var(--zc) 16%, transparent); color: var(--ink); font-size: 0.72rem; }
+.nz.is-target .nz-rule { display: block; }
+.nz-body { padding: 4px 14px 10px; }
+
+/* Machines */
+.nh { display: grid; grid-template-columns: 30px minmax(0, 1fr); column-gap: 10px; align-items: center; padding: 9px 0; border-top: 1px dashed rgba(236, 231, 221, 0.1); border-radius: 8px; transition: opacity 0.2s, background 0.2s; }
+.nh:first-child { border-top: 0; }
+.nh .net-icon { color: var(--zc); border-color: color-mix(in srgb, var(--zc) 40%, transparent); }
+.nh[data-host] { cursor: default; }
+.nh[data-host]:focus-visible { outline: 1px solid var(--zc); outline-offset: 2px; }
+.homelab-main .net .nh-name { margin: 0; color: var(--ink); font-size: 0.82rem; font-weight: bold; line-height: 1.35; }
+.homelab-main .net .nh-meta { margin: 1px 0 0; color: var(--dim); font-size: 0.7rem; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.nh-remote .net-icon { border-style: dashed; }
+.nh-extra .net-icon { color: var(--dim); border-color: var(--line); }
+.chips { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 5px; margin: 8px 0 0; padding: 0; list-style: none; }
+.chip { display: inline-flex; align-items: center; padding: 3px 10px; border-radius: 999px; border: 1px solid color-mix(in srgb, var(--zc) 30%, transparent); background: color-mix(in srgb, var(--zc) 8%, transparent); color: var(--ink); font-size: 0.72rem; line-height: 1.4; }
+.homelab-main .chip a { color: inherit; text-decoration-color: var(--zc); }
+
+/* Hover a machine: light it and everything it runs, wherever that lives. */
+.has-host .nh[data-host]:not(.is-lit) { opacity: 0.35; }
+.nh.is-lit { background: color-mix(in srgb, var(--zc) 10%, transparent); box-shadow: 0 0 0 6px color-mix(in srgb, var(--zc) 10%, transparent); }
+
+/* Pick a zone: dim the rest, light the source and its targets. */
+.has-selection .nz { opacity: 0.32; }
+.has-selection .nz.is-source, .has-selection .nz.is-target { opacity: 1; }
+.nz.is-source { border-color: var(--zc); box-shadow: 0 0 0 1px var(--zc), 0 0 30px color-mix(in srgb, var(--zc) 35%, transparent); }
+.nz.is-target { border-style: dashed; border-color: color-mix(in srgb, var(--zc) 80%, transparent); }
+
+/* Wires */
+.wire { fill: none; stroke: var(--line); stroke-width: 1.5; }
+.wire-uplink { stroke-dasharray: 3 5; }
+.wire-trunk, .wire-spine { stroke-width: 2.5; stroke: rgba(108, 196, 176, 0.45); }
+.wire-bus { stroke-width: 2; stroke: rgba(236, 231, 221, 0.3); }
+.port { fill: #16201e; stroke-width: 2; stroke: var(--infrastructure); }
+.port-people { stroke: var(--people); } .port-household { stroke: var(--household); } .port-contained { stroke: var(--contained); }
+.port-core { fill: var(--infrastructure); stroke: none; }
+.flow { fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-dasharray: 2 9; }
+.flow-up { stroke: var(--ink); animation: flow-up 0.9s linear infinite; }
+.flow-down, .flow-out { stroke: var(--live); animation: flow-down 0.9s linear infinite; }
+@keyframes flow-down { to { stroke-dashoffset: -22; } }
+@keyframes flow-up { to { stroke-dashoffset: 22; } }
+
+/* Detail panel */
+.net-detail { margin-top: 10px; padding: 14px 16px; border-radius: 12px; border: 1px solid var(--line); background: rgba(236, 231, 221, 0.03); display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); gap: 12px 28px; }
+.homelab-main .net .nd-hint { grid-column: 1 / -1; margin: 0; color: var(--dim); font-size: 0.8rem; }
+.nd-zone { display: flex; gap: 12px; align-items: flex-start; }
+.homelab-main .net .nd-name { margin: 0; color: var(--ink); font-family: Georgia, serif; font-size: 1.1rem; }
+.homelab-main .net .nd-purpose { margin: 4px 0 0; color: var(--dim); font-size: 0.78rem; line-height: 1.5; }
+.homelab-main .net .nd-reach p { margin: 0 0 6px; color: var(--dim); font-size: 0.66rem; letter-spacing: 0.12em; text-transform: uppercase; }
+.nd-reach ul { display: flex; flex-wrap: wrap; gap: 6px; margin: 0; padding: 0; list-style: none; }
+.nd-reach li { padding: 3px 10px; border-radius: 999px; background: rgba(95, 211, 147, 0.08); border: 1px solid rgba(95, 211, 147, 0.3); color: var(--dim); font-size: 0.74rem; }
+.nd-reach strong { color: var(--ink); font-weight: normal; }
+
+@media (prefers-reduced-motion: reduce) { .flow { animation: none; } }
+
+@media (max-width: 1100px) {
+  .net-group-infrastructure .nz[data-zone="MGMT"] { grid-column: span 5; }
+  .net-group-infrastructure .nz-wide { grid-column: span 7; }
+  .nz-stack { grid-column: span 12; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .nz-wide .nz-body { columns: 1; }
+  .net-group-people, .net-group-household { grid-column: span 4; }
+  .net-group-household .net-zones { --cols: 2; }
+}
+
+@media (max-width: 760px) {
+  .net { width: auto; margin-left: 0; padding: 18px 14px; }
+  .net-wires { display: none; }
+  .net-top { gap: 12px; margin-bottom: 24px; }
+  .net-group-label { margin-bottom: 12px; }
+  .net-zones, .net-group-infrastructure .net-zones, .net-group-household .net-zones { --cols: 1; gap: 14px; }
+  .nz-wide, .net-group-infrastructure .nz-wide, .net-group-infrastructure .nz[data-zone="MGMT"], .nz-stack { grid-column: auto; }
+  .nz-stack { grid-template-columns: minmax(0, 1fr); gap: 14px; }
+  .nz-wide .nz-body { columns: 1; }
+  .net-detail { grid-template-columns: minmax(0, 1fr); }
 }
 
 @media (max-width: 640px) {
@@ -76,14 +171,4 @@
   .lab-lede { font-size: 1.05rem; }
   .lab-status { grid-template-columns: minmax(0, 1fr); gap: 8px; padding: 18px; }
   .lab-section { padding: 32px 0; }
-  .hardware-grid, .lab-roadmap { grid-template-columns: minmax(0, 1fr); }
-  .hardware-card { padding: 22px; }
-  .lab-topology { padding: 20px 16px; }
-  .topology-branches { grid-template-columns: minmax(0, 1fr); gap: 18px; padding: 28px 0 0 20px; border-left: 1px solid #a59e92; margin: 0 0 0 12px; }
-  .topology-branches::before { display: none; }
-  .topology-core { width: 100%; }
-  .topology-core::after { left: 12px; height: 28px; }
-  .topology-node::before { left: -21px; top: 50%; bottom: auto; width: 20px; height: 0; border-left: 0; border-top: 1px solid #a59e92; }
-  .lab-decisions article { grid-template-columns: 28px minmax(0, 1fr); gap: 12px; }
-  .decision-number { font-size: 1.35rem; }
 }
